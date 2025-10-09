@@ -17,7 +17,7 @@ inputs:
         type: File
         default: 
             class: File
-            path: ../scripts/yamlToJson.sh
+            path: yamlToJson.sh
     filename:
         type: string
         default: "DockerImages.json"

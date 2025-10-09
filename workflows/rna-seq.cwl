@@ -224,11 +224,17 @@ steps:
         out:
             [expressionDir, genotypingDir]
         run:
-            subdirs.cwl
+            ../tools/subdirs.cwl
     convertDockerTagsFile:
         in:
             yaml: dockerImagesFile
             outputDir: outputDir
         out: [dockerImagesList]
         run:
-            convertDockerTagsFile.cwl
+            ../tools/convertDockerTagsFile.cwl
+    sampleConversion:
+        in:
+            samplesheet: sampleConfigFile
+            outputDir: outputDir
+        out: [samples]
+        run: ../tools/sampleConversion.cwl
