@@ -1,15 +1,12 @@
 cwlVersion: v1.2
 class: CommandLineTool
 baseCommand: bash
-label: "convert Docker yaml to Json"
+label: "convert yaml to Json"
 doc: "Converts a .yaml file to a .json file using bash and python."
 
 inputs:
     yaml:
         type: File
-        default: 
-            class: File
-            path: ../dockerImages.yml
     outputDir:
         type: string
         default: "."
@@ -18,15 +15,14 @@ inputs:
         default: 
             class: File
             path: yamlToJson.sh
-    filename:
+    json:
         type: string
-        default: "DockerImages.json"
 
 outputs:
     dockerImagesList:
         type: File
         outputBinding:
-            glob: $(inputs.outputDir)/$(inputs.filename)
+            glob: $(inputs.outputDir)/$(inputs.json)
     outputDir:
         type: Directory?
         outputBinding:
@@ -41,4 +37,4 @@ arguments:
   - $(inputs.script.path)
   - $(inputs.yaml.path)
   - $(inputs.outputDir)
-  - $(inputs.filename)
+  - $(inputs.json)

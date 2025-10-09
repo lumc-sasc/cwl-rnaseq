@@ -110,6 +110,10 @@ inputs:
     dockerImagesFile:
         type: File
         doc: "A YAML file describing the docker image used for the tasks. The dockerImages.yml provided with the pipeline is recommended."
+    dockerJsonFilename:
+        type: string?
+        default: "DockerImages.json"
+        doc: "A string for the DockerImages json file"
 
 outputs:
     report:
@@ -229,9 +233,10 @@ steps:
         in:
             yaml: dockerImagesFile
             outputDir: outputDir
+            json: dockerJsonFilename
         out: [dockerImagesList]
         run:
-            ../tools/convertDockerTagsFile.cwl
+            ../tools/yamlToJson.cwl
     sampleConversion:
         in:
             samplesheet: sampleConfigFile
