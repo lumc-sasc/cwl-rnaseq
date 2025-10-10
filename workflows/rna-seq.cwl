@@ -15,11 +15,9 @@ inputs:
         doc: "The reference fasta file."
     referenceFastaFai:
         type: File
-        secondaryFiles: ".fai"
         doc: "Fasta index (.fai) file of the reference."
     referenceFastaDict:
         type: File
-        secondaryFiles: ".dict"
         doc: "Sequence dictionary (.dict) file of the reference."
     platform:
         type: string
