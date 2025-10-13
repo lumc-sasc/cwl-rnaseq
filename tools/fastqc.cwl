@@ -1,0 +1,107 @@
+cwlVersion: v1.2
+class: CommandLineTool
+baseCommand: ["/bin/bash", "-c"]
+label: "FastQC - Quality Control Tool"
+doc: "A CWL Command Line Tool for fastqc."
+
+inputs:
+    sequence:
+        type: File
+        doc: "A fastq file."
+    outputDir:
+        type: string
+        default: "."
+        doc: "The output directory."
+    casava:
+        type: boolean
+        default: false
+        doc: "Equivalent to fastqc's --casava flag."
+    nano:
+        type: boolean
+        default: false
+        doc: "Equivalent to fastqc's --nano flag."
+    noFilter:
+        type: boolean
+        default: false
+        doc: "Equivalent to fastqc's --nofilter flag."
+    extract:
+        type: boolean
+        default: false
+        doc: "Equivalent to fastqc's --extract flag."
+    nogroup:
+        type: boolean
+        default: false
+        doc: "Equivalent to fastqc's --nogroup flag."
+    threads:
+        type: int
+        default: 1
+        doc: "The number of cores to use."
+    contaminants:
+        type: File?
+        doc: "Equivalent to fastqc's --contaminants option."
+    adapters:
+        type: File?
+        doc: "Equivalent to fastqc's --adapters option."
+    limits:
+        type: File?
+        doc: "Equivalent to fastqc's --limits option."
+    kmers:
+        type: int?
+        doc: "Equivalent to fastqc's --kmers option."
+
+outputs:
+    htmlReport:
+        type: File
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.sequence.basename.replace(/\\.gz$/, '').replace(/\\.[^.]*$/, '') + '_fastqc.html')"
+        doc: "HTML report file."
+    reportZip:
+        type: File
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.sequence.basename.replace(/\\.gz$/, '').replace(/\\.[^.]*$/, '') + '_fastqc.zip')"
+        doc: "Source data file."
+    summary:
+        type: File?
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.sequence.basename.replace(/\\.gz$/, '').replace(/\\.[^.]*$/, '') + '_fastqc/summary.txt')"
+        doc: "Summary file."
+    rawReport:
+        type: File?
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.sequence.basename.replace(/\\.gz$/, '').replace(/\\.[^.]*$/, '') + '_fastqc/fastqc_data.txt')"
+        doc: "Raw report file."
+    images:
+        type: File[]?
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.sequence.basename.replace(/\\.gz$/, '').replace(/\\.[^.]*$/, '') + '_fastqc/Images/*.png')"
+        doc: "Images in report file."
+    outputDir:
+        type: Directory?
+        outputBinding:
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+        doc: "The output directory."
+ 
+
+requirements:
+    DockerRequirement:
+        dockerPull: "quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0"
+    InlineJavascriptRequirement: {}
+    EnvVarRequirement:
+        envDef:
+        - envName: JAVA_OPTS
+          envValue: "-Djava.awt.headless=true"
+
+arguments:
+  - valueFrom: |
+      mkdir -p $(inputs.outputDir) && fastqc -o $(inputs.outputDir) \
+      $(inputs.casava ? "--casava" : "") \
+      $(inputs.nano ? "--nano" : "") \
+      $(inputs.noFilter ? "--nofilter" : "") \
+      $(inputs.extract ? "--extract" : "") \
+      $(inputs.nogroup ? "--nogroup" : "") \
+      --threads $(inputs.threads) \
+      $(inputs.contaminants ? ("--contaminants " + inputs.contaminants.path) : "") \
+      $(inputs.adapters ? ("--adapters " + inputs.adapters.path) : "") \
+      $(inputs.limits ? ("--limits " + inputs.limits.path) : "") \
+      $(inputs.kmers != null ? ("--kmers " + inputs.kmers) : "") \
+      $(inputs.sequence.path)
