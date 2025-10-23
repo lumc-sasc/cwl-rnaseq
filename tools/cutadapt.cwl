@@ -2,7 +2,7 @@ cwlVersion: v1.2
 class: CommandLineTool
 baseCommand: ["/bin/bash", "-c"]
 label: "Cutadapt - Adapter Cutting Tool"
-doc: "A CWL Command Line Tool for Cutadapt"
+doc: "A CWL Command Line Tool for Cutadapt."
 
 inputs:
     read1:

@@ -1,8 +1,8 @@
 cwlVersion: v1.2
 class: CommandLineTool
 baseCommand: ["/bin/bash", "-c"]
-label: "Hisat2 Alignment" 
-doc: ""
+label: "HISAT2 Alignment" 
+doc: "A CWL Command Line Tool for HISAT2."
 
 inputs:
     inputR1:
