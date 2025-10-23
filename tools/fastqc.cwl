@@ -48,6 +48,12 @@ inputs:
     kmers:
         type: int?
         doc: "Equivalent to fastqc's --kmers option."
+    baseMemory:
+        type:
+            - int
+            - string
+        default: "2G"
+        doc: "The base amount of memory this job will use."
 
 outputs:
     htmlReport:
@@ -90,6 +96,11 @@ requirements:
         envDef:
         - envName: JAVA_OPTS
           envValue: "-Djava.awt.headless=true"
+    ResourceRequirement:
+        coresMin: $(inputs.threads)
+        coresMax: $(inputs.threads)
+        ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
+        ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
 arguments:
   - valueFrom: |

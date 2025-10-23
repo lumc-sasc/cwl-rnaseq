@@ -79,6 +79,11 @@ requirements:
     DockerRequirement:
         dockerPull: "quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:2880dd9d8ad0a7b221d4eacda9a818e92983128d-0"
     InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        coresMin: "$(inputs.threads)"
+        coresMax: "$(inputs.threads)"
+        ramMin: "$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.listing.reduce((a, f) => a + (f.size || 0), 0) / (1024 ** 3) * 1.2)) * 1024))"
+        ramMax: "$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.listing.reduce((a, f) => a + (f.size || 0), 0) / (1024 ** 3) * 1.2)) * 1024 + 1024))"
 
 arguments:
       - |

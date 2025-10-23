@@ -177,6 +177,12 @@ inputs:
         type: int
         default: 4
         doc: "The number of cores to use."
+    baseMemory:
+        type: 
+            - int?
+            - string?
+        default: "5G"
+        doc: "The base amount of memory this job will use"
     outputDir:
         type: string
         default: "."
@@ -253,6 +259,11 @@ requirements:
     DockerRequirement:
         dockerPull: "quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1"
     InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        coresMin: $(inputs.runThreadN)
+        coresMax: $(inputs.runThreadN)
+        ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
+        ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
 arguments:
       - |
