@@ -1,6 +1,6 @@
 cwlVersion: v1.2
 class: CommandLineTool
-baseCommand: bash -c
+baseCommand: ["/bin/bash", "-c"]
 label: "Samplesheet conversion"
 doc: "A CWL Command Line Tool to convert a samplesheet.csv to a JSON format using the biowdl-input-converter."
 
