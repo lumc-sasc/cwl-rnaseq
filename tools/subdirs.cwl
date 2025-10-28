@@ -7,6 +7,7 @@ inputs:
     outputDir:
         type: string
         doc: "The output directory."
+
 outputs:
     expressionDir:
         type: string
@@ -16,7 +17,7 @@ outputs:
         doc: "The directory for variant calling and genotyping results. Defaults to a subdirectory of outputDir."
 
 requirements:
-    InlineJavascriptRequirement
+    InlineJavascriptRequirement: {}
 
 expression: |
     ${
