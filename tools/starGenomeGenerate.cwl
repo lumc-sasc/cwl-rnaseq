@@ -28,93 +28,102 @@ inputs:
             - string?
         default: "32G"
         doc: "The base amount of memory this job will use"
+    outputDir:
+        type: string
+        default: "."
+        doc: "The output directory."
 
 outputs:
     chrLength:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/chrLength.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/chrLength.txt"
         doc: "Text chromosome lengths file."
     chrNameLength:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/chrNameLength.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/chrNameLength.txt"
         doc: "Text chromosome name lengths file."
     chrName:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/chrName.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/chrName.txt"
         doc: "Text chromosome names file."
     chrStart:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/chrStart.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/chrStart.txt"
         doc: "Chromosome start sites file."
     genome:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/Genome"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/Genome"
         doc: "Binary genome sequence file."
     genomeParameters:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/genomeParameters.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/genomeParameters.txt"
         doc: "Genome parameters file."
     sa:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/SA"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/SA"
         doc: "Suffix arrays file."
     saIndex:
         type: File
         outputBinding:
-            glob: "$(inputs.genomeDir)/SAindex"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/SAindex"
         doc: "Index file of suffix arrays."
     exonGeTrInfo:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/exonGeTrInfo.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/exonGeTrInfo.tab"
         doc: "Exon, gene and transcript information file."
     exonInfo:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/exonInfo.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/exonInfo.tab"
         doc: "Exon information file."
     geneInfo:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/geneInfo.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/geneInfo.tab"
         doc: "Gene information file."
     sjdbInfo:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/sjdbInfo.txt"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/sjdbInfo.txt"
         doc: "Splice junctions coordinates file."
     sjdbListFromGtfOut:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/sjdbList.fromGTF.out.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/sjdbList.fromGTF.out.tab"
         doc: "Splice junctions from input GTF file."
     sjdbListOut:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/sjdbList.out.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/sjdbList.out.tab"
         doc: "Splice junction list file."
     transcriptInfo:
         type: File?
         outputBinding:
-            glob: "$(inputs.genomeDir)/transcriptInfo.tab"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/transcriptInfo.tab"
         doc: "Transcripts information file."
     starIndex:
         type: File[]
         outputBinding:
-            glob: "$(inputs.genomeDir)/*"
+            glob: "$(inputs.outputDir + '/' + inputs.genomeDir)/*"
         doc: "A collection of all STAR index files."
     genomeDir:
         type: Directory
         outputBinding:
-            glob: $(inputs.genomeDir)
+            glob: $(inputs.outputDir + '/' + inputs.genomeDir)
         doc: "Directory containing all STAR index files."
+    outputDir:
+        type: Directory?
+        outputBinding:
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+        doc: "The output directory."
 
 requirements:
     DockerRequirement:
@@ -128,11 +137,11 @@ requirements:
 
 arguments:
       - |
-        mkdir -p $(inputs.genomeDir)
+        mkdir -p $(inputs.outputDir + '/' + inputs.genomeDir)
         STAR \
         --runMode genomeGenerate \
         --runThreadN $(inputs.runThreadN) \
-        --genomeDir $(inputs.genomeDir) \
+        --genomeDir $(inputs.outputDir + '/' + inputs.genomeDir) \
         --genomeFastaFiles $(inputs.referenceFasta.path) \
-        $(inputs.referenceGtf ? "--sjdbGTFfile " + inputs.referenceGtf : "") \
+        $(inputs.referenceGtf ? "--sjdbGTFfile " + inputs.referenceGtf.path : "") \
         $(inputs.sjdbOverhang ? "--sjdbOverhang " + inputs.sjdbOverhang : "")
