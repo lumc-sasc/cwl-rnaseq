@@ -202,7 +202,7 @@ outputs:
     cutRead2:
         type: File?
         outputBinding:
-            glob: "$(inputs.outputDir + '/' + inputs.read2output)"
+            glob: "$(inputs.read2 ? inputs.outputDir + '/' + inputs.read2output : null)"
         doc: "Trimmed read two in pair."
     tooLongOutput:
         type: File?

@@ -138,7 +138,7 @@ steps:
             read1output: 
                 valueFrom: $( 'cutadapt_' + inputs.read1.basename )
             read2output: 
-                valueFrom: $( 'cutadapt_' + inputs.read2.basename )
+                valueFrom: "$( inputs.read2 ? 'cutadapt_' + inputs.read2.basename : '' )"
             adapter: adapterForward
             adapterRead2: adapterReverse
             anywhere: contaminations
@@ -149,7 +149,7 @@ steps:
         out:
             [cutRead1, cutRead2, report, outputDir]
         run: ../../tools/cutadapt.cwl
-        when: $(inputs.adapterForward != null || inputs.adapterReverse != null|| (inputs.anywhere != null && inputs.anywhere.length > 0)) 
+        when: $((inputs.adapter != null && inputs.adapter.length > 0) || (inputs.adapterRead2 != null && inputs.adapterRead2.length > 0) || (inputs.anywhere != null && inputs.anywhere.length > 0))
     FastqcRead1After:
         in:
             sequence: Cutadapt/cutRead1
