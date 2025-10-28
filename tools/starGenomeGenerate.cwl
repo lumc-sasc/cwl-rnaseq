@@ -15,9 +15,9 @@ inputs:
     referenceGtf:
         type: File?
         doc: "The reference GTF file."
-    sjbdOverhang:
+    sjdbOverhang:
         type: int?
-        doc: "Equivalent to STAR's `--sjbdOverhang` option."
+        doc: "Equivalent to STAR's `--sjdbOverhang` option."
     runThreadN:
         type: int
         default: 4
@@ -134,5 +134,5 @@ arguments:
         --runThreadN $(inputs.runThreadN) \
         --genomeDir $(inputs.genomeDir) \
         --genomeFastaFiles $(inputs.referenceFasta.path) \
-        $(inputs.referenceGtf ? "--sjbdGTFfile " + inputs.referenceGtf : "") \
-        $(inputs.sjbdOverhang ? "--sjbdOverhang " + inputs.sjbdOverhang : "")
+        $(inputs.referenceGtf ? "--sjdbGTFfile " + inputs.referenceGtf : "") \
+        $(inputs.sjdbOverhang ? "--sjdbOverhang " + inputs.sjdbOverhang : "")
