@@ -260,8 +260,8 @@ requirements:
         dockerPull: "quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
-        coresMin: $(inputs.runThreadN)
-        coresMax: $(inputs.runThreadN)
+        coresMin: $(inputs.cores)
+        coresMax: $(inputs.cores)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
         ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
