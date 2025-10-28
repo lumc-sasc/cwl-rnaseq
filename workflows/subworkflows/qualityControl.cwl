@@ -98,6 +98,15 @@ outputs:
         - FastqcRead2After/reportZip
         - Cutadapt/report
         doc: "Collection of all reports produced by the workflow."
+    outputDir:
+        type: Directory[]?
+        outputSource:
+        - FastqcRead1/outputDir
+        - FastqcRead2/outputDir
+        - Cutadapt/outputDir
+        - FastqcRead1After/outputDir
+        - FastqcRead2After/outputDir
+        doc: "The output directory."
 
 requirements:
     - class: InlineJavascriptRequirement
@@ -111,7 +120,7 @@ steps:
             outputDir: outputDir
             extract: extractFastqcZip
         out:
-            [htmlReport, reportZip, summary]
+            [htmlReport, reportZip, summary, outputDir]
         run: ../../tools/fastqc.cwl
     FastqcRead2:
         in:
@@ -119,7 +128,7 @@ steps:
             outputDir: outputDir
             extract: extractFastqcZip
         out:
-            [htmlReport, reportZip, summary]
+            [htmlReport, reportZip, summary, outputDir]
         run: ../../tools/fastqc.cwl
         when: $(inputs.sequence != null)
     Cutadapt:
@@ -138,7 +147,7 @@ steps:
             reportPath: 
                 valueFrom: $( inputs.readGroupName + '_cutadapt_report.txt' )
         out:
-            [cutRead1, cutRead2, report]
+            [cutRead1, cutRead2, report, outputDir]
         run: ../../tools/cutadapt.cwl
         when: $(inputs.adapterForward != null || inputs.adapterReverse != null|| (inputs.anywhere != null && inputs.anywhere.length > 0)) 
     FastqcRead1After:
@@ -147,7 +156,7 @@ steps:
             outputDir: outputDir
             extract: extractFastqcZip
         out:
-            [htmlReport, reportZip, summary]
+            [htmlReport, reportZip, summary, outputDir]
         run: ../../tools/fastqc.cwl
         when: $(inputs.sequence != null)
     FastqcRead2After:
@@ -156,6 +165,6 @@ steps:
             outputDir: outputDir
             extract: extractFastqcZip
         out:
-            [htmlReport, reportZip, summary]
+            [htmlReport, reportZip, summary, outputDir]
         run: ../../tools/fastqc.cwl
         when: $(inputs.sequence != null)
