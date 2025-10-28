@@ -1,0 +1,126 @@
+cwlVersion: v1.2
+class: CommandLineTool
+baseCommand: ["/bin/bash", "-c"]
+label: "STAR alignment"
+doc: "A CWL Command Line Tool for STAR."
+
+inputs:
+    inputR1:
+        type: File 
+        doc: "The first-/single-end FastQ files."
+    inputR2:
+        type: File?
+        doc: "The second-end FastQ files (in the same order as the first-end files)."
+    indexFiles:
+        type: Directory
+        loadListing: shallow_listing
+        doc: "The STAR index files."
+    outFileNamePrefix:
+        type: string
+        doc: "The prefix for the output files. May include directories."
+    outSAMtype:
+        type: string
+        default: "BAM SortedByCoordinate"
+        doc: "The type of alignment file to be produced. Currently only `BAM SortedByCoordinate` is supported."
+    readFilesCommand:
+        type: string
+        default: "zcat"
+        doc: "Equivalent to STAR's `--readFilesCommand` option."
+    outBAMcompression:
+        type: int
+        default: 1
+        doc: "The compression level of the output BAM."
+    outFilterScoreMin:
+        type: int?
+        doc: "Equivalent to STAR's `--outFilterScoreMin` option."
+    outFilterScoreMinOverLread:
+        type: float?
+        doc: "Equivalent to STAR's `--outFilterScoreMinOverLread` option."
+    outFilterMatchNmin:
+        type: int?
+        doc: "Equivalent to STAR's `--outFilterMatchNmin` option."
+    outFilterMatchNminOverLread:
+        type: float?
+        doc: "Equivalent to STAR's `--outFilterMatchNminOverLread` option."
+    outStd:
+        type: string?
+        doc: "Equivalent to STAR's `--outStd` option."
+    twopassMode:
+        type: string?
+        default: "Basic"
+        doc: "Equivalent to STAR's `--twopassMode` option."
+    outSAMattrRGline:
+        type: string[]?
+        doc: "The readgroup lines for the FastQ pairs given (in the same order as the FastQ files)."
+    outSAMunmapped:
+        type: string?
+        default: "Within KeepPairs"
+        doc: "Equivalent to STAR's `--outSAMunmapped` option."
+    limitBAMsortRAM:
+        type: int?
+        doc: "Equivalent to STAR's `--limitBAMsortRAM` option."
+    outputDir:
+        type: string
+        default: "."
+        doc: "The output directory."
+    runThreadN:
+        type: int
+        default: 4
+        doc: "The number of threads to use."
+    baseMemory:
+        type:
+            - int?
+            - string?
+        doc: "The base amount of memory this job will use."
+
+outputs:
+    bamFile:
+        type: File
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.outFileNamePrefix + 'Aligned.sortedByCoord.out.bam')"
+        doc: "Alignment file."
+    logFinalOut:
+        type: File
+        outputBinding:
+            glob: "$(inputs.outputDir + '/' + inputs.outFileNamePrefix + 'Log.final.out')"
+        doc: "Log information file."
+    outputDir:
+        type: Directory?
+        outputBinding:
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+        doc: "The output directory."
+
+    
+requirements:
+    DockerRequirement:
+        dockerPull: "quay.io/biocontainers/star:2.7.3a--0"
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        coresMin: "$(inputs.runThreadN)"
+        coresMax: "$(inputs.runThreadN)"
+        ramMin: "$(inputs.baseMemory ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024)"
+        ramMax: "$(inputs.baseMemory ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 + 1024)"
+
+arguments:
+      - |
+        set -e
+        mkdir -p $(inputs.outputDir)
+        STAR \
+        --readFilesIn $(inputs.inputR1.path) $(inputs.inputR2? inputs.inputR2.path : "") \
+        --outFileNamePrefix $(inputs.outFileNamePrefix) \
+        --genomeDir $(inputs.indexFiles.path) \
+        --outSAMtype $(inputs.outSAMtype) \
+        --outBAMcompression $(inputs.outBAMcompression) \
+        --readFilesCommand $(inputs.readFilesCommand) \
+        $(inputs.outFilterScoreMin ? "--outFilterScoreMin " + inputs.outFilterScoreMin : "")\
+        $(inputs.outFilterScoreMinOverLread ? "--outFilterScoreMinOverLread " + inputs.outFilterScoreMinOverLread : "") \
+        $(inputs.outFilterMatchNmin ? "--outFilterMatchNmin " + inputs.outFilterMatchNmin : "") \
+        $(inputs.outFilterMatchNminOverLread ? "--outFilterMatchNminOverLread " + inputs.outFilterMatchNminOverLread : "") \
+        $(inputs.outSAMunmapped ? "--outSAMunmapped " + inputs.outSAMunmapped : "") \
+        $(inputs.runThreadN ? "--runThreadN " + inputs.runThreadN : "") \
+        $(inputs.outStd ? "--outStd " + inputs.outStd : "") \
+        $(inputs.twopassMode ? "--twopassMode " + inputs.twopassMode : "") \
+        $(inputs.limitBAMsortRAM ? "--limitBAMsortRAM " + inputs.limitBAMsortRAM : "") \
+        $(inputs.outSAMattrRGline ? "--outSAMattrRGline " + inputs.outSAMattrRGline.join(" , ") : "")
+        mv $(inputs.outFileNamePrefix + 'Aligned.sortedByCoord.out.bam') $(inputs.outputDir)
+        mv $(inputs.outFileNamePrefix + 'Log.final.out') $(inputs.outputDir)
