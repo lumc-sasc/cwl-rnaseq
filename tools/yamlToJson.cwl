@@ -22,11 +22,11 @@ outputs:
     dockerImagesList:
         type: File
         outputBinding:
-            glob: $(inputs.outputDir)/$(inputs.json)
+            glob: $(inputs.outputDir + '/' + inputs.json)
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
 
 requirements:
     DockerRequirement:
