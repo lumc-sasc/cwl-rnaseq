@@ -40,6 +40,6 @@ steps:
             gtfFile: referenceGtf
             outputDir: outputDir
         out: [counts, outputDir]
-        run: ../../tools/htseq-count.cwl
+        run: ../../tools/htseq-count_v2_0_9.cwl
         when: $(!inputs.detectNovelTranscripts) 
     # TODO: Expand workflow to cover when detectNovelTranscripts is true

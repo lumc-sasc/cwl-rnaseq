@@ -240,4 +240,4 @@ steps:
             samplesheet: sampleConfigFile
             outputDir: outputDir
         out: [samples]
-        run: ../tools/sampleConversion.cwl
+        run: ../tools/sampleConversion_v0_3_0.cwl
