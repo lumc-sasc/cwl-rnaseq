@@ -52,6 +52,7 @@ inputs:
         doc: "The number of threads to use for sorting."
     threads:
         type: int?
+        default: 1
         doc: "The number of threads to use."
     outputDir:
         type: string
@@ -72,12 +73,12 @@ outputs:
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:2880dd9d8ad0a7b221d4eacda9a818e92983128d-0"
+        dockerPull: "quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:a8096c2f99091fdceda3457a9b91c9b0553f8296-2"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.threads)"
@@ -90,7 +91,7 @@ arguments:
         mkdir -p $(inputs.outputDir)
         hisat2 \
         $(inputs.threads ? "-p " + inputs.threads : "") \
-        -x $(inputs.indexFiles.listing[0].path.replace(/\.\d+\.ht2$/, "")) \
+        -x $(inputs.indexFiles.listing[0].path.split('.')[0]) \
         $(inputs.inputR2 ? "-1 " + inputs.inputR1.path + " -2 " + inputs.inputR2.path : "-U " + inputs.inputR1.path) \
         --rg-id $(inputs.readgroup) \
         --rg SM:$(inputs.sample) \

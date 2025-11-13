@@ -50,17 +50,17 @@ outputs:
     counts:
         type: File
         outputBinding: 
-            glob: "$(inputs.outputDir + '/' + inputs.outputTable)"
+            glob: $(inputs.outputDir + '/' + inputs.outputTable)
         doc: "Count table based on input BAM file."
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/htseq:0.12.4--py37hb3f55d8_0"
+        dockerPull: "quay.io/biocontainers/htseq:2.0.9--py311h8fb3dee_0"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.nprocesses)
