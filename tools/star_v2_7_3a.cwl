@@ -13,7 +13,7 @@ inputs:
         doc: "The second-end FastQ files (in the same order as the first-end files)."
     indexFiles:
         type: Directory
-        loadListing: shallow_listing
+        loadListing: deep_listing
         doc: "The STAR index files."
     outFileNamePrefix:
         type: string
@@ -82,12 +82,12 @@ outputs:
     logFinalOut:
         type: File
         outputBinding:
-            glob: "$(inputs.outputDir + '/' + inputs.outFileNamePrefix + 'Log.final.out')"
+            glob: $(inputs.outputDir + '/' + inputs.outFileNamePrefix + 'Log.final.out')
         doc: "Log information file."
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."
 
     
@@ -98,8 +98,8 @@ requirements:
     ResourceRequirement:
         coresMin: "$(inputs.runThreadN)"
         coresMax: "$(inputs.runThreadN)"
-        ramMin: "$(inputs.baseMemory ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024)"
-        ramMax: "$(inputs.baseMemory ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 + 1024)"
+        ramMin: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 || 4096)"
+        ramMax: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 + 1024 || 5120)"
 
 arguments:
       - |

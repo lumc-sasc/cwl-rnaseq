@@ -84,7 +84,7 @@ outputs:
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."
  
 
@@ -103,16 +103,18 @@ requirements:
         ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
 arguments:
-  - valueFrom: |
-      mkdir -p $(inputs.outputDir) && fastqc -o $(inputs.outputDir) \
-      $(inputs.casava ? "--casava" : "") \
-      $(inputs.nano ? "--nano" : "") \
-      $(inputs.noFilter ? "--nofilter" : "") \
-      $(inputs.extract ? "--extract" : "") \
-      $(inputs.nogroup ? "--nogroup" : "") \
-      --threads $(inputs.threads) \
-      $(inputs.contaminants ? ("--contaminants " + inputs.contaminants.path) : "") \
-      $(inputs.adapters ? ("--adapters " + inputs.adapters.path) : "") \
-      $(inputs.limits ? ("--limits " + inputs.limits.path) : "") \
-      $(inputs.kmers != null ? ("--kmers " + inputs.kmers) : "") \
-      $(inputs.sequence.path)
+     - |
+        mkdir -p $(inputs.outputDir)
+        fastqc -o $(inputs.outputDir) \
+        $(inputs.casava ? "--casava" : "") \
+        $(inputs.nano ? "--nano" : "") \
+        $(inputs.noFilter ? "--nofilter" : "") \
+        $(inputs.extract ? "--extract" : "") \
+        $(inputs.nogroup ? "--nogroup" : "") \
+        --threads $(inputs.threads) \
+        $(inputs.contaminants ? ("--contaminants " + inputs.contaminants.path) : "") \
+        $(inputs.adapters ? ("--adapters " + inputs.adapters.path) : "") \
+        $(inputs.limits ? ("--limits " + inputs.limits.path) : "") \
+        $(inputs.kmers != null ? ("--kmers " + inputs.kmers) : "") \
+        $(inputs.sequence.path)
+        fastqc --version

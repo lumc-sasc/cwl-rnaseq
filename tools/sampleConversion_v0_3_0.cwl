@@ -30,11 +30,11 @@ outputs:
     dockerImagesList:
         type: File
         outputBinding:
-            glob: $(inputs.outputDir)/$(inputs.filename)
+            glob: $(inputs.outputDir + '/' + inputs.filename)
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"    
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
 
 requirements:
     DockerRequirement:

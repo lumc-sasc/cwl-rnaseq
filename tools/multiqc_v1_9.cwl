@@ -119,7 +119,7 @@ outputs:
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."    
 
 requirements:
@@ -127,8 +127,8 @@ requirements:
         dockerPull: "quay.io/biocontainers/multiqc:1.9--py_1"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
-        ramMin: "$(inputs.memory ? inputs.memory * 1024 : (2 + Math.ceil(inputs.reports.size, 'G')) * 1024)"
-        ramMax: "$(inputs.memory ? inputs.memory * 1024 : (2 + Math.ceil(inputs.reports.size, 'G')) * 1024)"
+        ramMin: "$(inputs.memory ? inputs.memory * 1024 : (2 + Math.ceil(inputs.reports.size, 'G')) * 1024 || 4096)"
+        ramMax: "$(inputs.memory ? inputs.memory * 1024 : (2 + Math.ceil(inputs.reports.size, 'G')) * 1024 || 5120)"
 
 arguments:
       - |

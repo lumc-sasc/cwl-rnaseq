@@ -122,7 +122,7 @@ outputs:
     outputDir:
         type: Directory?
         outputBinding:
-            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir)"
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
         doc: "The output directory."
 
 requirements:
