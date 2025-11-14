@@ -117,4 +117,3 @@ arguments:
         $(inputs.limits ? ("--limits " + inputs.limits.path) : "") \
         $(inputs.kmers != null ? ("--kmers " + inputs.kmers) : "") \
         $(inputs.sequence.path)
-        fastqc --version
