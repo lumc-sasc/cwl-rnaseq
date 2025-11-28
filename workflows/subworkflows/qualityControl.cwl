@@ -77,6 +77,14 @@ outputs:
         type: File?
         outputSource: Cutadapt/report
         doc: "Report from CutAdapt processing of input fastq file(s)."
+    cutadaptRead1:
+        type: File?
+        outputSource: Cutadapt/cutRead1
+        doc: "Read 1 FASTQ file after adapter trimming."
+    cutadaptRead2:
+        type: File?
+        outputSource: Cutadapt/cutRead2
+        doc: "Read 2 FASTQ file after adapter trimming (if paired-end)."
     fastqcSummaries:
         type: File[]?
         outputSource:
@@ -139,6 +147,7 @@ steps:
                 valueFrom: $( 'cutadapt_' + inputs.read1.basename )
             read2output: 
                 valueFrom: "$( inputs.read2 ? 'cutadapt_' + inputs.read2.basename : '' )"
+            readGroupName: readGroupName
             adapter: adapterForward
             adapterRead2: adapterReverse
             anywhere: contaminations
