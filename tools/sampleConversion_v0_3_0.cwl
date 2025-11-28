@@ -7,34 +7,39 @@ doc: "A CWL Command Line Tool to convert a samplesheet.csv to a JSON format usin
 inputs:
     samplesheet:
         type: File
-        default: 
-            class: File
-            path: ../samplesheet.csv
+        doc: "CSV samplesheet to convert."
     outputDir:
         type: string
         default: "."
+        doc: "The directory to write the output to."
     filename:
         type: string
         default: "samples.json"
+        doc: "Name of the output JSON file."
     skipFileCheck:
         type: boolean
         default: true
+        doc: "Skip checking for the existence of input files."
     checkFileMd5sums:
         type: boolean
         default: false
+        doc: "Verify MD5 checksums of input files."
     old:
         type: boolean
         default: false
+        doc: "Use old-style conversion format."
 
 outputs:
-    dockerImagesList:
+    samples:
         type: File
         outputBinding:
             glob: $(inputs.outputDir + '/' + inputs.filename)
+        doc: "Converted samples JSON file."
     outputDir:
         type: Directory?
         outputBinding:
             glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
+        doc: "The output directory."
 
 requirements:
     DockerRequirement:
