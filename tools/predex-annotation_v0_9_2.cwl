@@ -7,12 +7,12 @@ doc: "A CWL Command Line Tool to convert a refernce Fasta-file, Fasta-file-index
 inputs:
     referenceFasta:
         type: File
-        secondaryFiles: 
-            - .fai
         doc: "The reference Fasta file."
     referenceGtfFile:
         type: File
         doc: "The reference GTF file."
+    referenceFastaFai:
+        type: File
     outputDir:
         type: string
         default: "."
@@ -38,6 +38,12 @@ requirements:
     DockerRequirement:
         dockerPull: "quay.io/biocontainers/predex:0.9.2--pyh3252c3a_0"
     InlineJavascriptRequirement: {}
+    InitialWorkDirRequirement:
+        listing:
+            - entryname: reference.fasta
+              entry: $(inputs.referenceFasta)
+            - entryname: reference.fasta.fai
+              entry: $(inputs.referenceFastaFai)
     ResourceRequirement:
         ramMin: $(inputs.memory.replace(/G$/,"")*1024)
         ramMax: $(inputs.memory.replace(/G$/,"")*1024)
