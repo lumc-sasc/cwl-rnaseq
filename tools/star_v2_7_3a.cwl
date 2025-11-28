@@ -107,7 +107,7 @@ arguments:
         mkdir -p $(inputs.outputDir)
         STAR \
         --readFilesIn $(inputs.inputR1.path) $(inputs.inputR2? inputs.inputR2.path : "") \
-        --outFileNamePrefix $(inputs.outFileNamePrefix) \
+        --outFileNamePrefix $(inputs.outputDir + '/' + inputs.outFileNamePrefix) \
         --genomeDir $(inputs.indexFiles.path) \
         --outSAMtype $(inputs.outSAMtype) \
         --outBAMcompression $(inputs.outBAMcompression) \
@@ -121,6 +121,4 @@ arguments:
         $(inputs.outStd ? "--outStd " + inputs.outStd : "") \
         $(inputs.twopassMode ? "--twopassMode " + inputs.twopassMode : "") \
         $(inputs.limitBAMsortRAM ? "--limitBAMsortRAM " + inputs.limitBAMsortRAM : "") \
-        $(inputs.outSAMattrRGline ? "--outSAMattrRGline " + inputs.outSAMattrRGline.join(" , ") : "")
-        mv $(inputs.outFileNamePrefix + 'Aligned.sortedByCoord.out.bam') $(inputs.outputDir)
-        mv $(inputs.outFileNamePrefix + 'Log.final.out') $(inputs.outputDir)
+        $(inputs.outSAMattrRGline ? "--outSAMattrRGline " + inputs.outSAMattrRGline.join(" , ") : "") 
