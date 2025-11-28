@@ -31,7 +31,8 @@ inputs:
     
 outputs:
     bamFile:
-        type: File[]
+        type: File
+        pickValue: first_non_null
         outputSource:
             - starAlign/bamFile
             - hisat2Align/bamFile
