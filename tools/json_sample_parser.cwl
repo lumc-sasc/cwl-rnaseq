@@ -1,15 +1,16 @@
 cwlVersion: v1.2
 class: ExpressionTool
-label: ""
-doc: ""
+label: "JSON Sample Parser"
+doc: "Parses the samples contained in a JSON formatted file, turns relative read paths into read file objects."
 
 inputs:
     jsonFile:
         type: File
         loadContents: true
+        doc: "JSON file containing the samples."
     readLocation:
         type: Directory
-        doc: "The directory containing the reads referred to in the samples. Please use the first directory in the path referred to as input value."
+        doc: "Directory containing the read files referenced in the JSON sample file. All fastq paths are relative to this directory."
 
 outputs:
     jsonDict:
@@ -40,7 +41,7 @@ outputs:
                                     type: string?
                                   - name: lib_id
                                     type: string
-        doc: "Sample definitions with loose sample id and nested readgroups."
+        doc: "Sample definitions with sample id and nested readgroups with associated read files."
 
 requirements:
     InlineJavascriptRequirement: {}
