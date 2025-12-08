@@ -5,14 +5,14 @@ label: "RNA-sequencing data analysis pipeline"
 inputs:
     sampleConfigFile:
         type: File
-        doc: "The samplesheet, including sample ids, library ids, readgroup ids and fastq file locations."
+        doc: "The samplesheet, including sample IDs, library IDs, readgroup IDs, and fastq file locations. Fastq paths must be relative to the readLocation directory (starting from the directory specified there). Do not use ../ anywhere."
     outputDir:
         type: string
         default: "."
         doc: "The output directory."
     readLocation:
         type: Directory
-        doc: "The directory containing the reads referred to in the sampleConfigFile. Please use the first directory in the path referred to as input value."
+        doc: "The directory containing the read files referenced in the sampleConfigFile. Use the directory that directly contains the reads as the input value."
     referenceFasta:
         type: File
         doc: "The reference fasta file."
