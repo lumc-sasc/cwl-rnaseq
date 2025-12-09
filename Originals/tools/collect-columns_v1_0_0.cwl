@@ -60,7 +60,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/collect-columns:1.0.0--py_0"
+        dockerImageId: "REPLACEPATH/collect-columns_1.0.0--py_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: 1

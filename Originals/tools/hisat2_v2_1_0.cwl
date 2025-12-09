@@ -78,7 +78,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:a8096c2f99091fdceda3457a9b91c9b0553f8296-2"
+        dockerImageId: "REPLACEPATH/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1_3067b520386698317fd507c413baf7f901666fd4-0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.threads)"

@@ -71,7 +71,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/picard:2.26.10--hdfd78af_0"
+        dockerImageId: "REPLACEPATH/picard_2.26.10--hdfd78af_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         ramMin: $(inputs.memoryMb)

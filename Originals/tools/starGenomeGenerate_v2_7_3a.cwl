@@ -127,7 +127,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/star:2.7.3a--0"
+        dockerImageId: "REPLACEPATH/star_2.7.3a--0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.runThreadN)

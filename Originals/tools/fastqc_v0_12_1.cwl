@@ -90,7 +90,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0"
+        dockerImageId: "REPLACEPATH/fastqc_0.12.1--hdfd78af_0.sif"
     InlineJavascriptRequirement: {}
     EnvVarRequirement:
         envDef:

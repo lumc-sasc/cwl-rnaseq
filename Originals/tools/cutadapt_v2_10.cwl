@@ -257,7 +257,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1"
+        dockerImageId: "REPLACEPATH/cutadapt_2.10--py37hf01694f_1.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.cores)

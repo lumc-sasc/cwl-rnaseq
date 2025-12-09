@@ -31,7 +31,7 @@ outputs:
     
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/predex:0.9.2--pyh3252c3a_0"
+        dockerImageId: "REPLACEPATH/predex_0.9.2--pyh3252c3a_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         ramMin: $(inputs.memory.replace(/G$/,"")*1024)

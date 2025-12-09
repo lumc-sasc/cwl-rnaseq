@@ -43,7 +43,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/biowdl-input-converter:0.3.0--pyhdfd78af_0"
+        dockerImageId: "REPLACEPATH/biowdl-input-converter_0.3.0--pyhdfd78af_0.sif"
     InlineJavascriptRequirement: {}
 
 arguments: 
