@@ -117,9 +117,9 @@ outputs:
         doc: "The output directory."
 
 requirements:
-    - class: InlineJavascriptRequirement
-    - class: StepInputExpressionRequirement
-    - class: MultipleInputFeatureRequirement
+    InlineJavascriptRequirement: {}
+    StepInputExpressionRequirement: {}
+    MultipleInputFeatureRequirement: {}
 
 steps:
     FastqcRead1:
