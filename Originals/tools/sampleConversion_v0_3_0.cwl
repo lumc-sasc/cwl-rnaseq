@@ -45,6 +45,8 @@ requirements:
     DockerRequirement:
         dockerImageId: "REPLACEPATH/biowdl-input-converter_0.3.0--pyhdfd78af_0.sif"
     InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 1024
 
 arguments: 
           - |
