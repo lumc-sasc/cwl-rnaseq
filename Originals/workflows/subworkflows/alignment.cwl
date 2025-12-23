@@ -24,10 +24,33 @@ inputs:
         type: string
         default: "star_align_"
         doc: "The prefix for the STAR output files."
-    sampleJson:
-        type: File
-        loadContents: true
-        doc: "The samplesheet, including sample ids, library ids, readgroup ids and fastq file locations."
+    sample:
+        type:
+            type: record
+            name: sample_record
+            fields:
+                - name: id
+                  type: string
+                - name: readgroups
+                  type:
+                      type: array
+                      items:
+                          type: record
+                          name: readgroup_record
+                          fields:
+                              - name: id
+                                type: string
+                              - name: R1
+                                type: File
+                              - name: R1_md5
+                                type: string?
+                              - name: R2
+                                type: File?
+                              - name: R2_md5
+                                type: string?
+                              - name: lib_id
+                                type: string
+        doc: "Sample definitions with loose sample id and nested readgroups."
     
 outputs:
     bamFile:
@@ -72,14 +95,13 @@ steps:
             inputR1: read1
             inputR2: read2
             indexFiles: hisat2Index
-            sampleJson: sampleJson
             starIndex: starIndex
             sample:
-                valueFrom: ${ return JSON.parse(inputs.sampleJson.contents).samples[0].id}
+                valueFrom: inputs.sample.id
             library:
-                valueFrom: ${ return JSON.parse(inputs.sampleJson.contents).samples[0].readgroups[0].lib_id}
+                valueFrom: inputs.sample.readgroups[0].lib_id
             readgroup:
-                valueFrom: ${ return JSON.parse(inputs.sampleJson.contents).samples[0].readgroups[0].id}
+                valueFrom: inputs.sample.readgroups[0].id
             outputDir: outputDir
         out:
             [bamFile, summaryFile ,outputDir]

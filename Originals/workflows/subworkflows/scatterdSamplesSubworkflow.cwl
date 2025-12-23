@@ -44,8 +44,6 @@ inputs:
         type: Directory?
     hisat2Index:
         type: Directory?
-    sampleJson:
-        type: File
     umiDeduplication:
         type: boolean
         default: false
@@ -179,7 +177,6 @@ steps:
                 valueFrom: "$(self !== null ? self : (inputs.sample.readgroups[0].R2 != null ? inputs.sample.readgroups[0].R2 : null))"
             starIndex: starIndex
             hisat2Index: hisat2Index
-            sampleJson: sampleJson
             outputDir:
                 source: outputDir
                 valueFrom: $(self + '/samples/' + inputs.sample.id + '/lib_' + inputs.sample.readgroups[0].lib_id + '--rg_' + inputs.sample.readgroups[0].id)
