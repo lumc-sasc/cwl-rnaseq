@@ -111,6 +111,9 @@ inputs:
     variantCallingRegions:
         type: File?
         doc: "A bed file describing the regions to operate on for variant calling."
+    starGenomeGenerateMemory:
+        type: string?
+        doc: "The amount of memory STAR Genome Generate will require to run. Please in '<numbers>G'."
 
 outputs:
     report:
@@ -265,6 +268,7 @@ steps:
         in:
             referenceGtf: referenceGtfFile
             referenceFasta: referenceFasta
+            baseMemory: starGenomeGenerateMemory
             outputDir: outputDir
         out: [genomeDir, outputDir]
         run: ../tools/starGenomeGenerate_v2_7_3a.cwl
