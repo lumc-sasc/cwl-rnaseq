@@ -60,7 +60,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerPull: "quay.io/biocontainers/htseq:2.0.9--py311h8fb3dee_0"
+        dockerImageId: "REPLACEPATH/htseq_2.0.9--py311h8fb3dee_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.nprocesses)
