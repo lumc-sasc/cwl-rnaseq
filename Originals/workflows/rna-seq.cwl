@@ -346,7 +346,7 @@ steps:
             outputDir:
                 source: outputDir
                 valueFrom: $(self + '/expression_measures')
-        out: [outputTable, outputDir]
+        out: [outputTable, looseTables, outputDir]
         run: subworkflows/expressionQuantification.cwl
     flatReports:
         in:
@@ -357,6 +357,7 @@ steps:
                 - runSingleSample/read2afterReportZip
                 - runSingleSample/metrics
                 - expressionQuantification/outputTable
+                - expressionQuantification/looseTables
         out: [flatArray]
         run: ../tools/array_flatten.cwl
     multiQC:

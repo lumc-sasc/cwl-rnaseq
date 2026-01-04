@@ -80,5 +80,6 @@ arguments:
         $(inputs.idattr ? "--idattr " + inputs.idattr : "") \
         $(inputs.additionalAttributes.length > 0 ? "--additional-attr " + inputs.additionalAttributes.join(" --additional-attr ") : "") \
         $(inputs.inputBams.map(function(f){return f.path}).join(" ")) \
-        $(inputs.gtfFile.path) \
-        -c $(inputs.outputDir + "/" + inputs.outputTable)
+        $(inputs.gtfFile.path)
+
+stdout: $(inputs.outputDir + "/" + inputs.outputTable)
