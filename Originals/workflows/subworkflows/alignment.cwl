@@ -20,10 +20,6 @@ inputs:
         type: string
         default: "."
         doc: "The output directory."
-    outFileNamePrefix:
-        type: string
-        default: "star_align_"
-        doc: "The prefix for the STAR output files."
     sample:
         type:
             type: record
@@ -84,7 +80,9 @@ steps:
             inputR1: read1
             inputR2: read2
             indexFiles: starIndex
-            outFileNamePrefix: outFileNamePrefix
+            outFileNamePrefix: 
+                source: sample
+                valueFrom: $(self.id + "-" + self.readgroups[0].lib_id + "-" + self.readgroups[0].id + ".star")
             outputDir: outputDir
         out:
             [bamFile, logFinalOut ,outputDir]
