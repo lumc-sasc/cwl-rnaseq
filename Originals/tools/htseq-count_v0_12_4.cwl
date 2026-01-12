@@ -60,7 +60,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/htseq_2.0.9--py311h8fb3dee_0.sif"
+        dockerImageId: "REPLACEPATH/htseq_0.12.4--py37hb3f55d8_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.nprocesses)

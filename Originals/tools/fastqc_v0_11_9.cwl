@@ -90,7 +90,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/fastqc_0.12.1--hdfd78af_0.sif"
+        dockerImageId: "REPLACEPATH/fastqc_0.11.9--0.sif"
     InlineJavascriptRequirement: {}
     EnvVarRequirement:
         envDef:

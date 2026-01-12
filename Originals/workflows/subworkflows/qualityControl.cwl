@@ -129,7 +129,7 @@ steps:
             extract: extractFastqcZip
         out:
             [htmlReport, reportZip, summary, outputDir]
-        run: ../../tools/fastqc_v0_12_1.cwl
+        run: ../../tools/fastqc_v0_11_9.cwl
     FastqcRead2:
         in:
             sequence: read2
@@ -137,7 +137,7 @@ steps:
             extract: extractFastqcZip
         out:
             [htmlReport, reportZip, summary, outputDir]
-        run: ../../tools/fastqc_v0_12_1.cwl
+        run: ../../tools/fastqc_v0_11_9.cwl
         when: $(inputs.sequence != null)
     Cutadapt:
         in:
@@ -166,7 +166,7 @@ steps:
             extract: extractFastqcZip
         out:
             [htmlReport, reportZip, summary, outputDir]
-        run: ../../tools/fastqc_v0_12_1.cwl
+        run: ../../tools/fastqc_v0_11_9.cwl
         when: $(inputs.sequence != null)
     FastqcRead2After:
         in:
@@ -175,5 +175,5 @@ steps:
             extract: extractFastqcZip
         out:
             [htmlReport, reportZip, summary, outputDir]
-        run: ../../tools/fastqc_v0_12_1.cwl
+        run: ../../tools/fastqc_v0_11_9.cwl
         when: $(inputs.sequence != null)

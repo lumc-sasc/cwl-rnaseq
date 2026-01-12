@@ -8,9 +8,9 @@ mkdir -p "$IMAGE_DIR"
 IMAGES=(
     "docker://quay.io/biocontainers/collect-columns:1.0.0--py_0" # collect columns
     "docker://quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1" # cutadapt
-    "docker://quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0" # fastqc
+    "docker://quay.io/biocontainers/fastqc:0.11.9--0" # fastqc
     "docker://quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:a8096c2f99091fdceda3457a9b91c9b0553f8296-2" # hisat2
-    "docker://quay.io/biocontainers/htseq:2.0.9--py311h8fb3dee_0" # htseq count
+    "docker://quay.io/biocontainers/htseq:0.12.4--py37hb3f55d8_0" # htseq count
     "docker://quay.io/biocontainers/multiqc:1.9--py_1" # multiqc
     "docker://quay.io/biocontainers/picard:2.26.10--hdfd78af_0" # picard markduplicates
     "docker://quay.io/biocontainers/predex:0.9.2--pyh3252c3a_0" # predex annotation & predex design

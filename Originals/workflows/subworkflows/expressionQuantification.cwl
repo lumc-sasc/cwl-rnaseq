@@ -51,7 +51,7 @@ steps:
                 source: outputDir
                 valueFrom: $(self + '/fragments_per_gene')
         out: [counts, outputDir]
-        run: ../../tools/htseq-count_v2_0_9.cwl
+        run: ../../tools/htseq-count_v0_12_4.cwl
         scatter: inputBams
         when: $(!inputs.detectNovelTranscripts) 
     flatCounts:
