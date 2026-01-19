@@ -47,104 +47,123 @@ inputs:
     umiDeduplication:
         type: boolean
         default: false
+    collectUmiStats:
+        type: boolean
+        default: false
+        doc: "Whether or not UMI deduplication stats should be collected. This will potentially cause a massive increase in memory usage of the deduplication step."
+    umiSeparator:
+        type: string?
+        doc: "Separator used for UMIs in the read names."
     outputDir:
         type: string
         default: "."
         doc: "The output directory."
 
 outputs:
-  qcRead1:
-    type: File?
-    outputSource: qualityControl/qcRead1
-    doc: "Quality control output file for first read."
-  qcRead2:
-    type: File?
-    outputSource: qualityControl/qcRead2
-    doc: "Quality control output file for second read (if paired‑end)."
-  read1htmlReport:
-    type: File?
-    outputSource: qualityControl/read1htmlReport
-    doc: "HTML report of QC results for first read."
-  read1reportZip:
-    type: File?
-    outputSource: qualityControl/read1reportZip
-    doc: "Compressed QC report archive for first read."
-  read1afterHtmlReport:
-    type: File?
-    outputSource: qualityControl/read1afterHtmlReport
-    doc: "HTML QC report for first read after trimming."
-  read1afterReportZip:
-    type: File?
-    outputSource: qualityControl/read1afterReportZip
-    doc: "Compressed QC report archive for first read after trimming."
-  read2htmlReport:
-    type: File?
-    outputSource: qualityControl/read2htmlReport
-    doc: "HTML report of QC results for second read."
-  read2reportZip:
-    type: File?
-    outputSource: qualityControl/read2reportZip
-    doc: "Compressed QC report archive for second read."
-  read2afterHtmlReport:
-    type: File?
-    outputSource: qualityControl/read2afterHtmlReport
-    doc: "HTML QC report for second read after trimming."
-  read2afterReportZip:
-    type: File?
-    outputSource: qualityControl/read2afterReportZip
-    doc: "Compressed QC report archive for second read after trimming."
-  cutadaptReport:
-    type: File?
-    outputSource: qualityControl/cutadaptReport
-    doc: "Report from adapter trimming step."
-  cutadaptRead1:
-    type: File?
-    outputSource: qualityControl/cutadaptRead1
-    doc: "Trimmed first‑read FASTQ file."
-  cutadaptRead2:
-    type: File?
-    outputSource: qualityControl/cutadaptRead2
-    doc: "Trimmed second‑read FASTQ file (if paired‑end)."
-  fastqcSummaries:
-    type: File[]?
-    outputSource: qualityControl/fastqcSummaries
-    doc: "Summary reports from FastQC analyses."
-  reports:
-    type: File[]?
-    outputSource: qualityControl/reports
-    doc: "Collection of all QC report files."
-  alignedBam:
-    type: File?
-    outputSource: alignment/bamFile
-    doc: "BAM file(s) produced by the alignment step."
-  logFile:
-    type: File[]?
-    outputSource: alignment/logFile
-    doc: "Log file(s) from the alignment step."
-  outputBam:
-    type: File[]?
-    outputSource: metrics/outputBam
-    doc: "Final BAM file(s) after deduplication and/or recalibration."
-  outputBamIndex:
-    type: File[]?
-    outputSource: metrics/outputBamIndex
-    doc: "Index (.bai) file(s) corresponding to the final BAM(s)."
-  metrics:
-    type: File[]?
-    outputSource: metrics/metrics
-    doc: "Metrics output file(s) summarising alignment/deduplication statistics."
-  outputDir:
-    type: Directory[]?
-    outputSource: flatOutputDirs/flatArray
-    doc: "Directories containing outputs for each sample."
-  finalBam:
-    type: File
-    outputSource: metrics/finalBam
-    doc: "The BAM file with which the workflow should continue."
-  finalBamIndex:
-    type: File
-    outputSource: metrics/finalBamIndex
-    doc: "The BAM index file with which the workflow should continue."
+    qcRead1:
+        type: File?
+        outputSource: qualityControl/qcRead1
+        doc: "Quality control output file for first read."
+    qcRead2:
+        type: File?
+        outputSource: qualityControl/qcRead2
+        doc: "Quality control output file for second read (if paired‑end)."
+    read1htmlReport:
+        type: File?
+        outputSource: qualityControl/read1htmlReport
+        doc: "HTML report of QC results for first read."
+    read1reportZip:
+        type: File?
+        outputSource: qualityControl/read1reportZip
+        doc: "Compressed QC report archive for first read."
+    read1afterHtmlReport:
+        type: File?
+        outputSource: qualityControl/read1afterHtmlReport
+        doc: "HTML QC report for first read after trimming."
+    read1afterReportZip:
+        type: File?
+        outputSource: qualityControl/read1afterReportZip
+        doc: "Compressed QC report archive for first read after trimming."
+    read2htmlReport:
+        type: File?
+        outputSource: qualityControl/read2htmlReport
+        doc: "HTML report of QC results for second read."
+    read2reportZip:
+        type: File?
+        outputSource: qualityControl/read2reportZip
+        doc: "Compressed QC report archive for second read."
+    read2afterHtmlReport:
+        type: File?
+        outputSource: qualityControl/read2afterHtmlReport
+        doc: "HTML QC report for second read after trimming."
+    read2afterReportZip:
+        type: File?
+        outputSource: qualityControl/read2afterReportZip
+        doc: "Compressed QC report archive for second read after trimming."
+    cutadaptReport:
+        type: File?
+        outputSource: qualityControl/cutadaptReport
+        doc: "Report from adapter trimming step."
+    cutadaptRead1:
+        type: File?
+        outputSource: qualityControl/cutadaptRead1
+        doc: "Trimmed first‑read FASTQ file."
+    cutadaptRead2:
+        type: File?
+        outputSource: qualityControl/cutadaptRead2
+        doc: "Trimmed second‑read FASTQ file (if paired‑end)."
+    fastqcSummaries:
+        type: File[]?
+        outputSource: qualityControl/fastqcSummaries
+        doc: "Summary reports from FastQC analyses."
+    reports:
+        type: File[]?
+        outputSource: qualityControl/reports
+        doc: "Collection of all QC report files."
+    alignedBam:
+        type: File?
+        outputSource: alignment/bamFile
+        doc: "BAM file(s) produced by the alignment step."
+    logFile:
+        type: File[]?
+        outputSource: alignment/logFile
+        doc: "Log file(s) from the alignment step."
+    outputBam:
+        type: File[]?
+        outputSource: metrics/outputBam
+        doc: "Final BAM file(s) after deduplication and/or recalibration."
+    outputBamIndex:
+        type: File[]?
+        outputSource: metrics/outputBamIndex
+        doc: "Index (.bai) file(s) corresponding to the final BAM(s)."
+    metrics:
+        type: File[]?
+        outputSource: metrics/metrics
+        doc: "Metrics output file(s) summarising alignment/deduplication statistics."
+    outputDir:
+        type: Directory[]?
+        outputSource: flatOutputDirs/flatArray
+        doc: "Directories containing outputs for each sample."
+    finalBam:
+        type: File
+        outputSource: metrics/finalBam
+        doc: "The BAM file with which the workflow should continue."
+    finalBamIndex:
+        type: File
+        outputSource: metrics/finalBamIndex
+        doc: "The BAM index file with which the workflow should continue."
+    editDistance:
+        type: File?
+        outputSource: metrics/editDistance
+        doc: "Report of the (binned) average edit distance between the UMIs at each position."
+    umiStats:
+        type: File?
+        outputSource: metrics/umiStats
+        doc: "UMI-level summary statistics."
+    positionStats:
+        type: File?
+        outputSource: metrics/positionStats
+        doc: "The counts for unique combinations of UMI and position."
 
 steps:
     qualityControl:
@@ -193,10 +212,12 @@ steps:
             sampleName:
                 valueFrom: $(inputs.sample.id)
             umiDeduplication: umiDeduplication
+            umiSeparator: umiSeparator
+            collectUmiStats: collectUmiStats
             outputDir:
                 source: outputDir
                 valueFrom: $(self + '/samples/' + inputs.sample.id)
-        out: [outputBam, outputBamIndex, metrics, outputDir, finalBam, finalBamIndex]
+        out: [outputBam, outputBamIndex, metrics, outputDir, finalBam, finalBamIndex, editDistance, umiStats, positionStats]
         run: metrics.cwl
     flatOutputDirs:
         in:

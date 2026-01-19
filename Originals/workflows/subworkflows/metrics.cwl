@@ -15,6 +15,13 @@ inputs:
         type: boolean
         default: false
         doc: "Whether or not UMI based deduplication should be performed."
+    collectUmiStats:
+        type: boolean
+        default: false
+        doc: "Whether or not UMI deduplication stats should be collected. This will potentially cause a massive increase in memory usage of the deduplication step."
+    umiSeparator:
+        type: string?
+        doc: "Separator used for UMIs in the read names."
     outputDir:
         type: string
         default: "."
@@ -57,6 +64,18 @@ outputs:
         outputSource:
             - markDuplicates2/outputBamIndex
             - markDuplicates1/outputBamIndex
+    editDistance:
+        type: File?
+        outputSource: umi_tools_dedup/editDistance
+        doc: "Report of the (binned) average edit distance between the UMIs at each position."
+    umiStats:
+        type: File?
+        outputSource: umi_tools_dedup/umiStats
+        doc: "UMI-level summary statistics."
+    positionStats:
+        type: File?
+        outputSource: umi_tools_dedup/positionStats
+        doc: "The counts for unique combinations of UMI and position."
 
 requirements:
     InlineJavascriptRequirement: {}
@@ -77,13 +96,17 @@ steps:
     umi_tools_dedup:
         in:
             umiDeduplication: umiDeduplication
+            umiSeparator: umiSeparator
+            collectUmiStats: collectUmiStats
+            statsPrefix:
+                source: sampleName
+                valueFrom: "$(inputs.collectUmiStats ? self : null)"
             inputBam: markDuplicates1/outputBam
-            statsPrefix: sampleName
             outputBam:
                 source: sampleName
                 valueFrom: $(self + '.dedup.bam')
             outputDir: outputDir
-        out: [deduppedBam, outputDir]
+        out: [deduppedBam, outputDir, editDistance, umiStats, positionStats]
         run: ../../tools/umi_tools-dedup_v1_1_1.cwl
         when: $(inputs.umiDeduplication === true)
     markDuplicates2:

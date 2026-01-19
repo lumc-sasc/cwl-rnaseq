@@ -19,28 +19,28 @@ inputs:
     referenceFastaFai:
         type: File
         doc: "Fasta index (.fai) file of the reference."
-    referenceFastaDict:
-        type: File
-        doc: "Sequence dictionary (.dict) file of the reference."
-    platform:
-        type: string
-        default: "illumina"
-        doc: "The platform used for sequencing."
+    # referenceFastaDict:
+    #     type: File
+    #     doc: "Sequence dictionary (.dict) file of the reference."
+    # platform:
+    #     type: string
+    #     default: "illumina"
+    #     doc: "The platform used for sequencing."
     strandedness:
         type: string
         doc: "The strandedness of the RNA sequencing library preparation. One of 'None' (unstranded), 'FR' (forward-reverse: first read equal transcript) or 'RF' (reverse-forward: second read equals transcript)."
-    lncRNAdatabases:
-        type: File[]
-        default: []
-        doc: "A set of GTF files the assembled GTF file should be compared with. Only used if lncRNAdetection is set to `true`."
-    variantCalling:
-        type: boolean
-        default: false
-        doc: "Whether or not variantcalling should be performed."
-    lncRNAdetection:
-        type: boolean
-        default: false
-        doc: "Whether or not lncRNA detection should be run. This will enable detectNovelTranscript (this cannot be disabled by setting detectNovelTranscript to false). This will require cpatLogitModel and cpatHex to be defined."
+    # lncRNAdatabases:
+    #     type: File[]
+    #     default: []
+    #     doc: "A set of GTF files the assembled GTF file should be compared with. Only used if lncRNAdetection is set to `true`."
+    # variantCalling:
+    #     type: boolean
+    #     default: false
+    #     doc: "Whether or not variantcalling should be performed."
+    # lncRNAdetection:
+    #     type: boolean
+    #     default: false
+    #     doc: "Whether or not lncRNA detection should be run. This will enable detectNovelTranscript (this cannot be disabled by setting detectNovelTranscript to false). This will require cpatLogitModel and cpatHex to be defined."
     detectNovelTranscripts:
         type: boolean
         default: false
@@ -57,20 +57,23 @@ inputs:
         type: boolean
         default: false
         doc: "Whether or not UMI deduplication stats should be collected. This will potentially cause a massive increase in memory usage of the deduplication step."
-    scatterSizeMillions:
-        type: int
-        default: 1000
-        doc: "Same as scatterSize, but is multiplied by 1000000 to get scatterSize. This allows for setting larger values more easily."
-    runStringtieQuantification:
-        type: boolean
-        default: true
-        doc: "Option to disable running stringtie for quantification. This does not affect the usage of stringtie for novel transcript detection."
-    dbsnpVCF:
-        type: File?
-        doc: "dbsnp VCF file used for checking known sites."
-    dbsnpVCFIndex:
-        type: File?
-        doc: "Index (.tbi) file for the dbsnp VCF."
+    umiSeparator:
+        type: string?
+        doc: "Separator used for UMIs in the read names."
+    # scatterSizeMillions:
+    #     type: int
+    #     default: 1000
+    #     doc: "Same as scatterSize, but is multiplied by 1000000 to get scatterSize. This allows for setting larger values more easily."
+    # runStringtieQuantification:
+    #     type: boolean
+    #     default: true
+    #     doc: "Option to disable running stringtie for quantification. This does not affect the usage of stringtie for novel transcript detection."
+    # dbsnpVCF:
+    #     type: File?
+    #     doc: "dbsnp VCF file used for checking known sites."
+    # dbsnpVCFIndex:
+    #     type: File?
+    #     doc: "Index (.tbi) file for the dbsnp VCF."
     starIndex:
         type: 
             - File[]?
@@ -87,30 +90,30 @@ inputs:
     adapterReverse:
         type: string?
         doc: "The adapter to be removed from the reads second end reads."
-    refflatFile:
-        type: File?
-        doc: "A refflat files describing the genes. If this is defined RNAseq metrics will be collected."
+    # refflatFile:
+    #     type: File?
+    #     doc: "A refflat files describing the genes. If this is defined RNAseq metrics will be collected."
     referenceGtfFile:
         type: File?
         doc: "A reference GTF file. Used for expression quantification or to guide the transcriptome assembly if detectNovelTranscripts is set to `true` (this GTF won't be be used directly for the expression quantification in that case."
-    cpatLogitModel:
-        type: File?
-        doc: "A logit model for CPAT. Required if lncRNAdetection is `true`."
-    cpatHex:
-        type: File?
-        doc: "A hexamer frequency table for CPAT. Required if lncRNAdetection is `true`."
-    scatterSize:
-        type: int?
-        doc: "The size of the scattered regions in bases for the GATK subworkflows. Scattering is used to speed up certain processes. The genome will be seperated into multiple chunks (scatters) which will be processed in their own job, allowing for parallel processing. Higher values will result in a lower number of jobs. The optimal value here will depend on the available resources."
-    XNonParRegions:
-        type: File?
-        doc: "Bed file with the non-PAR regions of X for variant calling."
-    YNonParRegions:
-        type: File?
-        doc: "Bed file with the non-PAR regions of Y for variant calling."
-    variantCallingRegions:
-        type: File?
-        doc: "A bed file describing the regions to operate on for variant calling."
+    # cpatLogitModel:
+    #     type: File?
+    #     doc: "A logit model for CPAT. Required if lncRNAdetection is `true`."
+    # cpatHex:
+    #     type: File?
+    #     doc: "A hexamer frequency table for CPAT. Required if lncRNAdetection is `true`."
+    # scatterSize:
+    #     type: int?
+    #     doc: "The size of the scattered regions in bases for the GATK subworkflows. Scattering is used to speed up certain processes. The genome will be seperated into multiple chunks (scatters) which will be processed in their own job, allowing for parallel processing. Higher values will result in a lower number of jobs. The optimal value here will depend on the available resources."
+    # XNonParRegions:
+    #     type: File?
+    #     doc: "Bed file with the non-PAR regions of X for variant calling."
+    # YNonParRegions:
+    #     type: File?
+    #     doc: "Bed file with the non-PAR regions of Y for variant calling."
+    # variantCallingRegions:
+    #     type: File?
+    #     doc: "A bed file describing the regions to operate on for variant calling."
     starGenomeGenerateMemory:
         type: string?
         doc: "The amount of memory STAR Genome Generate will require to run. Please in '<numbers>G'."
@@ -121,10 +124,10 @@ outputs:
         outputSource:
             - multiQC/multiQcReport
         doc: "The MultiQC report."
-    # fragmentPerGeneTable:
-    #     type: File
-    #     outputSource: # expression.fragmentsPerGeneTable
-    #     doc: "Table of counts per gene, generated from transcript assembly and alignment."
+    fragmentPerGeneTable:
+        type: File
+        outputSource: expressionQuantification/outputTable
+        doc: "Table of counts per gene, generated from transcript assembly and alignment."
     dgeDesign:
         type: File?
         outputSource: predex_design/dgeDesign
@@ -193,18 +196,18 @@ outputs:
         type: File[]
         outputSource: flatBamIndex/flatArray
         doc: "Index files (.bai) corresponding to recalibrated BAM files."
-    # umiEditDistance:
-    #     type: File[]?
-    #     outputSource: # sampleJobs.umiEditDistance
-    #     doc: "Files reporting UMI edit distance statistics per sample."
-    # umiStats:
-    #     type: File[]?
-    #     outputSource: # sampleJobs.umiStats
-    #     doc: "UMI deduplication summary statistics files."
-    # umiPositionStats:
-    #     type: File[]?
-    #     outputSource: # sampleJobs.umiPositionStats
-    #     doc: "UMI positional statistics files for each sample."
+    umiEditDistance:
+        type: File[]?
+        outputSource: runSingleSample/editDistance
+        doc: "Files reporting UMI edit distance statistics per sample."
+    umiStats:
+        type: File[]?
+        outputSource: runSingleSample/umiStats
+        doc: "UMI deduplication summary statistics files."
+    umiPositionStats:
+        type: File[]?
+        outputSource: runSingleSample/positionStats
+        doc: "UMI positional statistics files for each sample."
     generatedStarIndex:
         type: Directory?
         outputSource: genomeGenerate/genomeDir
@@ -289,8 +292,9 @@ steps:
                 source: starIndex
                 valueFrom: "$(self != null ? self : inputs.genomeDir)"
             hisat2Index: hisat2Index
-            sampleJson: sampleConversion/samples
             umiDeduplication: umiDeduplication
+            umiSeparator: umiSeparator
+            collectUmiStats: collectUmiStats
         out:
             - qcRead1
             - qcRead2
@@ -315,6 +319,9 @@ steps:
             - outputDir
             - finalBam
             - finalBamIndex
+            - editDistance
+            - umiStats
+            - positionStats
         run: subworkflows/scatterdSamplesSubworkflow.cwl
         scatter: samples
         scatterMethod: dotproduct
@@ -342,6 +349,7 @@ steps:
         in:
             bamFiles: flatContinueBam/flatArray
             referenceGtf: referenceGtfFile
+            strandedness: strandedness
             detectNovelTranscripts: detectNovelTranscripts
             outputDir:
                 source: outputDir
@@ -355,7 +363,11 @@ steps:
                 - runSingleSample/read2reportZip
                 - runSingleSample/read1afterReportZip
                 - runSingleSample/read2afterReportZip
+                - runSingleSample/cutadaptReport
                 - runSingleSample/metrics
+                - runSingleSample/editDistance
+                - runSingleSample/umiStats
+                - runSingleSample/positionStats
                 - expressionQuantification/outputTable
                 - expressionQuantification/looseTables
         out: [flatArray]

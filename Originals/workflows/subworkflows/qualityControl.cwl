@@ -147,14 +147,14 @@ steps:
                 valueFrom: $( 'cutadapt_' + inputs.read1.basename )
             read2output: 
                 valueFrom: "$( inputs.read2 ? 'cutadapt_' + inputs.read2.basename : '' )"
-            readGroupName: readGroupName
             adapter: adapterForward
             adapterRead2: adapterReverse
             anywhere: contaminations
             anywhereRead2: contaminations
             outputDir: outputDir
             reportPath: 
-                valueFrom: $( inputs.readGroupName + '_cutadapt_report.txt' )
+                source: readGroupName
+                valueFrom: $( self + '_cutadapt_report.txt' )
         out:
             [cutRead1, cutRead2, report, outputDir]
         run: ../../tools/cutadapt_v2_10.cwl

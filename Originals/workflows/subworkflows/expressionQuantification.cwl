@@ -13,6 +13,9 @@ inputs:
     detectNovelTranscripts:
         type: boolean
         doc: "If true, generates a new GTF from BAM files using StringTie. When a reference GTF is provided, it guides the assembly."
+    strandedness:
+        type: string
+        doc: "The strandedness of the RNA sequencing library preparation. One of 'None' (unstranded), 'FR' (forward-reverse: first read equal transcript) or 'RF' (reverse-forward: second read equals transcript)."
     outputDir:
         type: string
         default: "."
@@ -45,6 +48,9 @@ steps:
                 source: bamFiles
                 valueFrom: $([self])
             gtfFile: referenceGtf
+            stranded: 
+                source: strandedness
+                valueFrom: "$(self === 'FR' ? 'yes' : self === 'RF' ? 'reverse' : 'no')"
             outputTable: 
                 valueFrom: $(inputs.inputBams.basename.split(".")[0] + '.fragments_per_gene')
             outputDir:
