@@ -33,12 +33,14 @@ outputs:
         pickValue: all_non_null
         outputSource:
             - markDuplicates1/outputBam
+            - umi_tools_dedup/deduppedBam
             - markDuplicates2/outputBam
     outputBamIndex:
         type: File[]
         pickValue: all_non_null
         outputSource:
             - markDuplicates1/outputBamIndex
+            - umi_tools_dedup/deduppedBamIndex
             - markDuplicates2/outputBamIndex
     metrics:
         type: File[]
@@ -51,6 +53,7 @@ outputs:
         pickValue: all_non_null
         outputSource:
             - markDuplicates1/outputDir
+            - umi_tools_dedup/outputDir
             - markDuplicates2/outputDir
     finalBam:
         type: File
@@ -106,7 +109,7 @@ steps:
                 source: sampleName
                 valueFrom: $(self + '.dedup.bam')
             outputDir: outputDir
-        out: [deduppedBam, outputDir, editDistance, umiStats, positionStats]
+        out: [deduppedBam, deduppedBamIndex, outputDir, editDistance, umiStats, positionStats]
         run: ../../tools/umi_tools-dedup_v1_1_1.cwl
         when: $(inputs.umiDeduplication === true)
     markDuplicates2:
