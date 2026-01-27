@@ -370,6 +370,8 @@ steps:
                 - runSingleSample/positionStats
                 - expressionQuantification/outputTable
                 - expressionQuantification/looseTables
+            noNull: 
+                valueFrom: $(true)
         out: [flatArray]
         run: ../tools/array_flatten.cwl
     multiQC:
