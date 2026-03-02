@@ -82,7 +82,7 @@ steps:
             indexFiles: starIndex
             outFileNamePrefix: 
                 source: sample
-                valueFrom: $(self.id + "-" + self.readgroups[0].lib_id + "-" + self.readgroups[0].id + ".star")
+                valueFrom: $(self.id + "-" + self.readgroups[0].lib_id + "-" + self.readgroups[0].id + ".star.")
             outputDir: outputDir
         out:
             [bamFile, logFinalOut ,outputDir]
