@@ -78,7 +78,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1_3067b520386698317fd507c413baf7f901666fd4-0.sif"
+        dockerImageId: "REPLACEPATH/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1_2880dd9d8ad0a7b221d4eacda9a818e92983128d-0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.threads)"

@@ -124,7 +124,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/multiqc_1.9--py_1.sif"
+        dockerImageId: "REPLACEPATH/multiqc_1.9--pyh9f0ad1d_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         ramMin: "$(inputs.memory ? inputs.memory * 1024 : (2 + Math.ceil(inputs.reports.size, 'G')) * 1024 || 4096)"

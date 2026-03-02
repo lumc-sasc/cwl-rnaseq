@@ -95,7 +95,7 @@ steps:
                 valueFrom: $(self + '.markdup.metrics')
             outputDir: outputDir
         out: [outputBam, outputBamIndex, metricsFile, outputDir]
-        run: ../../tools/picard-markduplicates_v2_26_10.cwl
+        run: ../../tools/picard-markduplicates_v2_23_2.cwl
     umi_tools_dedup:
         in:
             umiDeduplication: umiDeduplication
@@ -126,5 +126,5 @@ steps:
                 valueFrom: $(self + '.dedup.markdup.metrics')
             outputDir: outputDir
         out: [outputBam, outputBamIndex, metricsFile, outputDir]
-        run: ../../tools/picard-markduplicates_v2_26_10.cwl
+        run: ../../tools/picard-markduplicates_v2_23_2.cwl
         when: $(inputs.umiDeduplication === true)

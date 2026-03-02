@@ -86,7 +86,7 @@ steps:
             outputDir: outputDir
         out:
             [bamFile, logFinalOut ,outputDir]
-        run: ../../tools/star_v2_7_3a.cwl
+        run: ../../tools/star_v2_7_5a.cwl
         when: $(inputs.indexFiles !== null && inputs.indexFiles.class === "Directory")
     hisat2Align:
         in:
@@ -103,5 +103,5 @@ steps:
             outputDir: outputDir
         out:
             [bamFile, summaryFile ,outputDir]
-        run: ../../tools/hisat2_v2_1_0.cwl
+        run: ../../tools/hisat2_v_44da2652.cwl
         when: $(inputs.indexFiles !== null && inputs.indexFiles.class === "Directory" && (inputs.starIndex === null || inputs.starIndex.class !== "Directory"))

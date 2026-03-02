@@ -237,7 +237,7 @@ steps:
             samplesheet: sampleConfigFile
             outputDir: outputDir
         out: [samples, outputDir]
-        run: ../tools/sampleConversion_v0_3_0.cwl
+        run: ../tools/sampleConversion_v0_2_1.cwl
     jsonParsed:
         in:
             jsonFile: sampleConversion/samples
@@ -274,7 +274,7 @@ steps:
             baseMemory: starGenomeGenerateMemory
             outputDir: outputDir
         out: [genomeDir, outputDir]
-        run: ../tools/starGenomeGenerate_v2_7_3a.cwl
+        run: ../tools/starGenomeGenerate_v2_7_5a.cwl
         when: $(inputs.starIndex == null && inputs.hisat2Index == null)
     runSingleSample:
         in:

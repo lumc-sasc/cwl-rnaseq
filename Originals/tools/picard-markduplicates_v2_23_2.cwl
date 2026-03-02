@@ -71,7 +71,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/picard_2.26.10--hdfd78af_0.sif"
+        dockerImageId: "REPLACEPATH/picard_2.23.2--0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         ramMin: $(inputs.memoryMb)

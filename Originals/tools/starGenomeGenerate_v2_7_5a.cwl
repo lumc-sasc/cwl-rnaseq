@@ -127,7 +127,7 @@ outputs:
 
 requirements:
     DockerRequirement:
-        dockerImageId: "REPLACEPATH/star_2.7.3a--0.sif"
+        dockerImageId: "REPLACEPATH/star_2.7.5a--0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.runThreadN)

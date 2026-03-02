@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_DIR="" # Please set an absolute path for the image containing directory
+IMAGE_DIR="/home/finn/internship/cwl-rnaseq/containers" # Please set an absolute path for the image containing directory
 WORKFLOW_ORIGINAL="cwl-rnaseq/Originals" # Location of original files with REPLACEPATH/<image>.sif
 WORKFLOW_COPY="cwl-rnaseq/copies" # Location for files with correct container path
 
@@ -9,13 +9,13 @@ IMAGES=(
     "docker://quay.io/biocontainers/collect-columns:1.0.0--py_0" # collect columns
     "docker://quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1" # cutadapt
     "docker://quay.io/biocontainers/fastqc:0.11.9--0" # fastqc
-    "docker://quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:a8096c2f99091fdceda3457a9b91c9b0553f8296-2" # hisat2
-    "docker://quay.io/biocontainers/htseq:0.12.4--py37hb3f55d8_0" # htseq count
-    "docker://quay.io/biocontainers/multiqc:1.9--py_1" # multiqc
-    "docker://quay.io/biocontainers/picard:2.26.10--hdfd78af_0" # picard markduplicates
+    "docker://quay.io/biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:2880dd9d8ad0a7b221d4eacda9a818e92983128d-0" # hisat2
+    "docker://quay.io/biocontainers/htseq:0.12.4--py37h0498b6d_2" # htseq count
+    "docker://quay.io/biocontainers/multiqc:1.9--pyh9f0ad1d_0" # multiqc
+    "docker://quay.io/biocontainers/picard:2.23.2--0" # picard markduplicates
     "docker://quay.io/biocontainers/predex:0.9.2--pyh3252c3a_0" # predex annotation & predex design
-    "docker://quay.io/biocontainers/biowdl-input-converter:0.3.0--pyhdfd78af_0" # sampleConversion
-    "docker://quay.io/biocontainers/star:2.7.3a--0" # star & starGenomeGenerate
+    "docker://quay.io/biocontainers/biowdl-input-converter:0.2.1--py_0" # sampleConversion
+    "docker://quay.io/biocontainers/star:2.7.5a--0" # star & starGenomeGenerate
     "docker://quay.io/biocontainers/mulled-v2-509311a44630c01d9cb7d2ac5727725f51ea43af:3067b520386698317fd507c413baf7f901666fd4-0" # umi_tools dedup
 )
 
