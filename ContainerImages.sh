@@ -4,6 +4,7 @@ WORKFLOW_ORIGINAL="cwl-rnaseq/Originals" # Location of original files with REPLA
 WORKFLOW_COPY="cwl-rnaseq/copies" # Location for files with correct container path
 
 mkdir -p "$IMAGE_DIR"
+mkdir -p "$WORKFLOW_COPY"
 
 IMAGES=(
     "docker://quay.io/biocontainers/collect-columns:1.0.0--py_0" # collect columns
