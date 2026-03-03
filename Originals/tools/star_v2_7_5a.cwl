@@ -98,8 +98,8 @@ requirements:
     ResourceRequirement:
         coresMin: "$(inputs.runThreadN)"
         coresMax: "$(inputs.runThreadN)"
-        ramMin: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 || 4096)"
-        ramMax: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.ceil((function f(d){return d.listing.reduce((s,x)=>s+(x.class=='File'?x.size:f(x)),0)})(inputs.indexFiles)/1073741824*1.3+1)*1024 + 1024 || 5120)"
+        ramMin: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)))"
+        ramMax: "$(inputs.baseMemory != null ? inputs.baseMemory + 1024 : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)) + 1024)"
 
 arguments:
       - |
