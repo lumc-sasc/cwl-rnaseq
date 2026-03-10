@@ -1,0 +1,10 @@
+'groundTruth': '../../01_BioWDL'
+'comparative': '../../0X_CWL'
+'expression': 'expression_measures'
+'fpg': 'fragments_per_gene'
+'samples': 'samples'
+'samplesheet': 'samplesheet_relpath.csv'
+'lib-rg': 'lib_lib--rg_rg'
+'full_countTable': 'all_samples.fragments_per_gene'
+'cut_adapt': True
+'reads': 2
