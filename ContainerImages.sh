@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_DIR="/home/finn/internship/cwl-rnaseq/containers" # Please set an absolute path for the image containing directory
+IMAGE_DIR="" # Please set an absolute path for the image containing directory
 WORKFLOW_ORIGINAL="cwl-rnaseq/Originals" # Location of original files with REPLACEPATH/<image>.sif
 WORKFLOW_COPY="cwl-rnaseq/copies" # Location for files with correct container path
 
