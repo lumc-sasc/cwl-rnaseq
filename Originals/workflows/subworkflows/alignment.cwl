@@ -16,6 +16,9 @@ inputs:
     hisat2Index:
         type: Directory?
         doc: "The hisat2 index files."
+    indexFiles:
+        type: File[]
+        doc: "File array of the index that will be used. (STAR > Hisat2 > GenomeGenerate)"
     outputDir:
         type: string
         default: "."
@@ -79,7 +82,8 @@ steps:
         in:
             inputR1: read1
             inputR2: read2
-            indexFiles: starIndex
+            indexDir: starIndex
+            indexFiles: indexFiles
             outFileNamePrefix: 
                 source: sample
                 valueFrom: $(self.id + "-" + self.readgroups[0].lib_id + "-" + self.readgroups[0].id + ".star.")
@@ -87,12 +91,13 @@ steps:
         out:
             [bamFile, logFinalOut ,outputDir]
         run: ../../tools/star_v2_7_5a.cwl
-        when: $(inputs.indexFiles !== null && inputs.indexFiles.class === "Directory")
+        when: $(inputs.indexDir !== null && inputs.indexDir.class === "Directory")
     hisat2Align:
         in:
             inputR1: read1
             inputR2: read2
-            indexFiles: hisat2Index
+            indexDir: hisat2Index
+            indexFiles: indexFiles
             starIndex: starIndex
             sample:
                 valueFrom: inputs.sample.id
@@ -104,4 +109,4 @@ steps:
         out:
             [bamFile, summaryFile ,outputDir]
         run: ../../tools/hisat2_v_44da2652.cwl
-        when: $(inputs.indexFiles !== null && inputs.indexFiles.class === "Directory" && (inputs.starIndex === null || inputs.starIndex.class !== "Directory"))
+        when: $(inputs.indexDir !== null && inputs.indexDir.class === "Directory" && (inputs.starIndex === null || inputs.starIndex.class !== "Directory"))

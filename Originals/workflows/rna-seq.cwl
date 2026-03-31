@@ -276,6 +276,15 @@ steps:
         out: [genomeDir, outputDir]
         run: ../tools/starGenomeGenerate_v2_7_5a.cwl
         when: $(inputs.starIndex == null && inputs.hisat2Index == null)
+    indexToFiles:
+        in:
+            genomeDir: genomeGenerate/genomeDir
+            hisat2Index: hisat2Index
+            indexFiles:  
+                source: starIndex
+                valueFrom: '$(self ? self : (inputs.hisat2Index ? index.hisat2Index : inputs.genomeDir))'
+        out: [indexFiles]
+        run: ../tools/indexToFiles.cwl
     runSingleSample:
         in:
             samples: jsonParsed/jsonDict
@@ -292,6 +301,7 @@ steps:
                 source: starIndex
                 valueFrom: "$(self != null ? self : inputs.genomeDir)"
             hisat2Index: hisat2Index
+            indexFiles: indexToFiles/indexFiles
             umiDeduplication: umiDeduplication
             umiSeparator: umiSeparator
             collectUmiStats: collectUmiStats

@@ -11,9 +11,12 @@ inputs:
     inputR2:
         type: File?
         doc: "The second-end FastQ files (in the same order as the first-end files)."
-    indexFiles:
+    indexDir:
         type: Directory
         loadListing: deep_listing
+        doc: "The STAR index files."
+    indexFiles:
+        type: File[]
         doc: "The STAR index files."
     outFileNamePrefix:
         type: string
@@ -101,10 +104,10 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.runThreadN)"
-        ramMin: '$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+x.size,0)/1000000000)*1.3+1)*1024)))'
+        ramMin: '$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.reduce((s,x)=>s+x.size,0)/1000000000)*1.3+1)*1024)))'
     ToolTimeLimit:
         class: ToolTimeLimit
-        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.max(4096, Math.ceil((inputs.indexFiles.listing.reduce((s,x)=>s+x.size,0)) / 1000000000)) + Math.ceil(((inputs.inputR1.size) + (inputs.inputR2 ? inputs.inputR2.size : 0)) / 1000000000 * 300 / inputs.runThreadN)) * 60)'
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.max(4, Math.ceil((inputs.indexFiles.reduce((s,x)=>s+x.size,0)) / 1000000000)) + Math.ceil(((inputs.inputR1.size) + (inputs.inputR2 ? inputs.inputR2.size : 0)) / 1000000000 * 300 / inputs.runThreadN)) * 60)'
 
 arguments:
       - |
@@ -113,7 +116,7 @@ arguments:
         STAR \
         --readFilesIn $(inputs.inputR1.path) $(inputs.inputR2? inputs.inputR2.path : "") \
         --outFileNamePrefix $(inputs.outputDir + '/' + inputs.outFileNamePrefix) \
-        --genomeDir $(inputs.indexFiles.path) \
+        --genomeDir $(inputs.indexDir.path) \
         --outSAMtype $(inputs.outSAMtype) \
         --outBAMcompression $(inputs.outBAMcompression) \
         --readFilesCommand $(inputs.readFilesCommand) \

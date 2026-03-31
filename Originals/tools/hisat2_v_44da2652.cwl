@@ -11,9 +11,12 @@ inputs:
     inputR2:
         type: File?
         doc: "The second-end FastQ file."
-    indexFiles:
+    indexDir:
         type: Directory
         loadListing: shallow_listing
+        doc: "The hisat2 index files."
+    indexFiles:
+        type: File[]
         doc: "The hisat2 index files."
     outputBam:
         type: string
@@ -86,17 +89,17 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: '$(inputs.threads)'
-        ramMin: '$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.listing.reduce((a, f) => a + f.size, 0) / 1000000000 * 1.2)) * 1024))'
+        ramMin: '$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.reduce((a, f) => a + f.size, 0) / 1000000000 * 1.2)) * 1024))'
     ToolTimeLimit:
         class: ToolTimeLimit
-        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.ceil((inputs.inputR1.size + inputs.inputR2.size) / 1000000000 * 180 / inputs.threads)) * 60)'
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.ceil((inputs.inputR1.size + (inputs.inputR2 ? inputs.inputR2.size : 0)) / 1000000000 * 180 / inputs.threads)) * 60)'
 
 arguments:
       - |
         mkdir -p $(inputs.outputDir)
         hisat2 \
         $(inputs.threads ? "-p " + inputs.threads : "") \
-        -x $(inputs.indexFiles.listing[0].path.split('.')[0]) \
+        -x $(inputs.indexDir.listing[0].path.split('.')[0]) \
         $(inputs.inputR2 ? "-1 " + inputs.inputR1.path + " -2 " + inputs.inputR2.path : "-U " + inputs.inputR1.path) \
         --rg-id $(inputs.readgroup) \
         --rg SM:$(inputs.sample) \

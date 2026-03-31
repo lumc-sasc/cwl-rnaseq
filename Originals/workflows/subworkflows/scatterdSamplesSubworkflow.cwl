@@ -44,6 +44,9 @@ inputs:
         type: Directory?
     hisat2Index:
         type: Directory?
+    indexFiles:
+        type: File[]
+        doc: "File array of the index that will be used. (STAR > Hisat2 > GenomeGenerate)"
     umiDeduplication:
         type: boolean
         default: false
@@ -196,6 +199,7 @@ steps:
                 valueFrom: "$(self !== null ? self : (inputs.sample.readgroups[0].R2 != null ? inputs.sample.readgroups[0].R2 : null))"
             starIndex: starIndex
             hisat2Index: hisat2Index
+            indexFiles: indexFiles
             outputDir:
                 source: outputDir
                 valueFrom: $(self + '/samples/' + inputs.sample.id + '/lib_' + inputs.sample.readgroups[0].lib_id + '--rg_' + inputs.sample.readgroups[0].id)
