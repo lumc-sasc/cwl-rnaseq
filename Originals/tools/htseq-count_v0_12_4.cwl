@@ -41,6 +41,10 @@ inputs:
         type: string
         default: "8G"
         doc: "The amount of memory the job requires in GB."
+    timeMinutes:
+        type: int
+        default: 1440
+        doc: "The maximum amount of time the job will run in minutes."
     outputDir:
         type: string
         default: "."
@@ -65,6 +69,9 @@ requirements:
     ResourceRequirement:
         coresMin: $(inputs.nprocesses)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: $(inputs.timeMinutes * 60)
 
 arguments:
       - |

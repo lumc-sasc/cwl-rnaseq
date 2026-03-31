@@ -45,6 +45,10 @@ inputs:
         type: int?
         default: 7168
         doc: "The amount of memory this job will use in megabytes."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     outputBam:
@@ -76,7 +80,9 @@ requirements:
     ResourceRequirement:
         coresMin: 1
         ramMin: $(inputs.memoryMb)
-        
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : Math.ceil(inputs.inputBams.reduce((s,x)=>s+x.size,0) / 1000000000 * 8) * 60)'
 
 arguments:
      - |

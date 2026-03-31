@@ -16,6 +16,10 @@ inputs:
         type: string
         default: "5G"
         doc: "The amount of memory this job will use."
+    timeMinutes:
+        type: int
+        default: 30
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     dgeDesign:
@@ -35,6 +39,9 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         ramMin: $(inputs.memory.replace(/G$/,"")*1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: $(inputs.timeMinutes * 60)
 
 arguments:
       - |

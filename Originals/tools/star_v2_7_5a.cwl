@@ -72,6 +72,10 @@ inputs:
             - int?
             - string?
         doc: "The base amount of memory this job will use."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     bamFile:
@@ -97,7 +101,10 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.runThreadN)"
-        ramMin: '$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)))'
+        ramMin: '$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+x.size,0)/1000000000)*1.3+1)*1024)))'
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.max(4096, Math.ceil((inputs.indexFiles.listing.reduce((s,x)=>s+x.size,0)) / 1000000000)) + Math.ceil(((inputs.inputR1.size) + (inputs.inputR2 ? inputs.inputR2.size : 0)) / 1000000000 * 300 / inputs.runThreadN)) * 60)'
 
 arguments:
       - |

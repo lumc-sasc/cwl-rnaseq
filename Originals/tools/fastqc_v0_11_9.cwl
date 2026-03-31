@@ -54,6 +54,10 @@ inputs:
             - string
         default: "2G"
         doc: "The base amount of memory this job will use."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     htmlReport:
@@ -99,6 +103,9 @@ requirements:
     ResourceRequirement:
         coresMin: $(inputs.threads)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.ceil(inputs.sequence.size / 1000000000)) * 4 * 60)'
 
 arguments:
      - |

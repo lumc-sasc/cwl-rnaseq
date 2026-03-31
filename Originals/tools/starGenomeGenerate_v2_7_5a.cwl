@@ -28,6 +28,10 @@ inputs:
             - string?
         default: "32G"
         doc: "The base amount of memory this job will use"
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
     outputDir:
         type: string
         default: "."
@@ -132,6 +136,9 @@ requirements:
     ResourceRequirement:
         coresMin: $(inputs.runThreadN)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : Math.ceil((inputs.referenceFasta.size) / 1000000000 * 240 / inputs.runThreadN) * 60)'
 
 arguments:
       - |

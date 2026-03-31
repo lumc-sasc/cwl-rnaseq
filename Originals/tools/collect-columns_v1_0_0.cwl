@@ -45,6 +45,10 @@ inputs:
     featureAttribute:
         type: string?
         doc: "Equivalent to the -F option of collect-columns."
+    timeMinutes:
+        type: int
+        default: 10
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     outputTable:
@@ -65,6 +69,9 @@ requirements:
     ResourceRequirement:
         coresMin: 1
         ramMin: $((4 + Math.ceil(0.5 * inputs.inputTables.length)) * 1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: $(inputs.timeMinutes * 60)
 
 
 arguments:

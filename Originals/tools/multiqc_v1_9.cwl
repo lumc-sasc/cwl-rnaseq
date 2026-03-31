@@ -100,6 +100,10 @@ inputs:
     memory:
         type: string?
         doc: "The amount of memory this job will use."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
     outputDir:
         type: string
         default: "."
@@ -127,7 +131,10 @@ requirements:
         dockerImageId: "REPLACEPATH/multiqc_1.9--pyh9f0ad1d_0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
-        ramMin: '$(inputs.memory ? inputs.memory * 1024 : Math.ceil(inputs.reports.reduce((s,x)=>s+(x.size||0),0)/1073741824) * 1024)'
+        ramMin: '$(inputs.memory ? inputs.memory * 1024 : Math.ceil(inputs.reports.reduce((s,x)=>s+x.size,0)/1000000000) * 1024)'
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (10 + Math.ceil(inputs.reports.reduce((s,x)=>s+x.size,0) / 1000000000 * 8)) * 60)'
 
 arguments:
       - |

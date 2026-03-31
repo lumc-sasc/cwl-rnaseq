@@ -36,6 +36,10 @@ inputs:
         type: string?
         default: "25G"
         doc: "The amount of memory required for the task."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
 
 outputs:
     deduppedBam:
@@ -76,6 +80,9 @@ requirements:
     ResourceRequirement:
         coresMin: 1
         ramMin: $(parseInt(inputs.memory.replace(/G$/, "")) * 1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (30 + Math.ceil((inputs.inputBam.size) / 1000000000 * 30)) * 60)'
 
 arguments:
      -  |

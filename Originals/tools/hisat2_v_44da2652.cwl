@@ -54,6 +54,10 @@ inputs:
         type: int?
         default: 1
         doc: "The number of threads to use."
+    timeMinutes:
+        type: int
+        default: 0
+        doc: "The maximum amount of time the job will run in minutes."
     outputDir:
         type: string
         default: "."
@@ -82,7 +86,10 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: '$(inputs.threads)'
-        ramMin: '$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.listing.reduce((a, f) => a + (f.size || 0), 0) / (1024 ** 3) * 1.2)) * 1024))'
+        ramMin: '$(Math.ceil(((inputs.sortThreads !== undefined ? inputs.sortThreads : (inputs.threads == 1 ? 1 : 1 + Math.ceil(inputs.threads / 4))) * inputs.sortMemoryPerThreadGb + 1 + Math.ceil(inputs.indexFiles.listing.reduce((a, f) => a + f.size, 0) / 1000000000 * 1.2)) * 1024))'
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: '$(inputs.timeMinutes != 0 ? inputs.timeMinutes * 60 : (1 + Math.ceil((inputs.inputR1.size + inputs.inputR2.size) / 1000000000 * 180 / inputs.threads)) * 60)'
 
 arguments:
       - |
