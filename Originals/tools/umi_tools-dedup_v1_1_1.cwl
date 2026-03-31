@@ -74,10 +74,8 @@ requirements:
         dockerImageId: "REPLACEPATH/mulled-v2-509311a44630c01d9cb7d2ac5727725f51ea43af_3067b520386698317fd507c413baf7f901666fd4-0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
-        ramMin: $(parseInt(inputs.memory.replace(/G$/, "")) * 1024)
-        ramMax: $(parseInt(inputs.memory.replace(/G$/, "")) * 1024 + 1024)
         coresMin: 1
-        coresMax: 1
+        ramMin: $(parseInt(inputs.memory.replace(/G$/, "")) * 1024)
 
 arguments:
      -  |

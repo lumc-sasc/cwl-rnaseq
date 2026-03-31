@@ -64,9 +64,7 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: 1
-        coresMax: 1
         ramMin: $((4 + Math.ceil(0.5 * inputs.inputTables.length)) * 1024)
-        ramMax: $((4 + Math.ceil(0.5 * inputs.inputTables.length)) * 1024 + 1024)
 
 
 arguments:

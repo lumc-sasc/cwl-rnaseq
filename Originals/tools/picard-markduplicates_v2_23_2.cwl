@@ -74,10 +74,9 @@ requirements:
         dockerImageId: "REPLACEPATH/picard_2.23.2--0.sif"
     InlineJavascriptRequirement: {}
     ResourceRequirement:
-        ramMin: $(inputs.memoryMb)
-        ramMax: $(inputs.memoryMb + 1024)
         coresMin: 1
-        coresMax: 1
+        ramMin: $(inputs.memoryMb)
+        
 
 arguments:
      - |

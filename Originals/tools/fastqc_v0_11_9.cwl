@@ -98,9 +98,7 @@ requirements:
           envValue: "-Djava.awt.headless=true"
     ResourceRequirement:
         coresMin: $(inputs.threads)
-        coresMax: $(inputs.threads)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
-        ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
 arguments:
      - |

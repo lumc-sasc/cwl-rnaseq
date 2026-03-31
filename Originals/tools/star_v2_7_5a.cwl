@@ -97,9 +97,7 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: "$(inputs.runThreadN)"
-        coresMax: "$(inputs.runThreadN)"
-        ramMin: "$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)))"
-        ramMax: "$(inputs.baseMemory != null ? inputs.baseMemory + 1024 : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)) + 1024)"
+        ramMin: '$(inputs.baseMemory != null ? inputs.baseMemory : Math.max(4096, Math.ceil(((inputs.indexFiles.listing.reduce((s,x)=>s+(x.size||0),0)/1073741824)*1.3+1)*1024)))'
 
 arguments:
       - |

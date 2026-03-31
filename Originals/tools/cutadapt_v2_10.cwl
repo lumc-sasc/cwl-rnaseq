@@ -261,9 +261,7 @@ requirements:
     InlineJavascriptRequirement: {}
     ResourceRequirement:
         coresMin: $(inputs.cores)
-        coresMax: $(inputs.cores)
         ramMin: $(inputs.baseMemory.replace(/G$/,"")*1024)
-        ramMax: $(inputs.baseMemory.replace(/G$/,"")*1024)
 
 arguments:
       - |

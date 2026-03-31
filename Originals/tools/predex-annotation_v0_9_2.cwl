@@ -46,7 +46,6 @@ requirements:
               entry: $(inputs.referenceFastaFai)
     ResourceRequirement:
         ramMin: $(inputs.memory.replace(/G$/,"")*1024)
-        ramMax: $(inputs.memory.replace(/G$/,"")*1024)
 
 arguments:
       - |
