@@ -3,8 +3,33 @@ IMAGE_DIR="" # Please set an absolute path for the image containing directory
 WORKFLOW_ORIGINAL="cwl-rnaseq/Originals" # Location of original files with REPLACEPATH/<image>.sif
 WORKFLOW_COPY="cwl-rnaseq/copies" # Location for files with correct container path
 
+if [[ -z "$IMAGE_DIR" ]]; then
+    echo "Error: IMAGE_DIR is empty." >&2
+    exit 1
+fi
+
+if [[ -z "$WORKFLOW_ORIGINAL" ]]; then
+    echo "Error: WORKFLOW_ORIGINAL is not set." >&2
+    exit 1
+fi
+
+if [[ ! -e "$WORKFLOW_ORIGINAL" ]]; then
+    echo "Error: WORKFLOW_ORIGINAL does not exist: $WORKFLOW_ORIGINAL" >&2
+    exit 1
+fi
+
+if [[ -z "$WORKFLOW_COPY" ]]; then
+    echo "Error: WORKFLOW_COPY is not set." >&2
+    exit 1
+fi
+
 mkdir -p "$IMAGE_DIR"
 mkdir -p "$WORKFLOW_COPY"
+
+if [[ ! -d "$IMAGE_DIR" ]]; then
+    echo "Error: IMAGE_DIR does not exist: $IMAGE_DIR" >&2
+    exit 1
+fi
 
 IMAGES=(
     "docker://quay.io/biocontainers/collect-columns:1.0.0--py_0" # collect columns
