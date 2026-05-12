@@ -10,7 +10,7 @@ inputs:
         doc: "The tables from which columns should be taken."
     outputFile:
         type: string
-        default: collect-collumns.out.tsv
+        default: "collect-columns.out.tsv"
         doc: "The output File name with extension."
     outputDir:
         type: string

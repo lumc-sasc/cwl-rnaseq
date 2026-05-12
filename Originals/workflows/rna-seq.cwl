@@ -282,7 +282,7 @@ steps:
             hisat2Index: hisat2Index
             indexFiles:  
                 source: starIndex
-                valueFrom: '$(self ? self : (inputs.hisat2Index ? index.hisat2Index : inputs.genomeDir))'
+                valueFrom: '$(self ? self : (inputs.hisat2Index ? inputs.hisat2Index : inputs.genomeDir))'
         out: [indexFiles]
         run: ../tools/indexToFiles.cwl
     runSingleSample:
