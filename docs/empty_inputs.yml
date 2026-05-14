@@ -1,0 +1,23 @@
+sampleConfigFile:
+  class: File
+  path: #Relative to this file or absolute
+referenceFasta:
+  class: File
+  path: #Relative to this file or absolute
+referenceFastaFai:
+  class: File
+  path: #Relative to this file or absolute
+referenceGtfFile:
+  class: File
+  path: #Relative to this file or absolute
+readLocation:
+  class: Directory
+  path: #Absolute
+strandedness: ""
+adapterForward: ""
+adapterReverse: ""
+outputDir: ""
+dgeFiles: true
+umiDeduplication: true
+collectUmiStats: false
+detectNovelTranscripts: false
