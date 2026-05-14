@@ -1,7 +1,7 @@
 #!/bin/bash
 IMAGE_DIR="" # Please set an absolute path for the image containing directory
-WORKFLOW_ORIGINAL="cwl-rnaseq/Originals" # Location of original files with REPLACEPATH/<image>.sif
-WORKFLOW_COPY="cwl-rnaseq/copies" # Location for files with correct container path
+WORKFLOW_ORIGINAL="Originals" # Location of original files with REPLACEPATH/<image>.sif
+WORKFLOW_COPY="copies" # Location for files with correct container path
 
 if [[ -z "$IMAGE_DIR" ]]; then
     echo "Error: IMAGE_DIR is empty." >&2
