@@ -1,0 +1,8 @@
+- name: htseq count 1 input
+  command: cwltool --singularity COPYDIR/tools/htseq-count_v0_12_4.cwl tests/jobs/htseq-count-1-input-job.yml
+  files:
+  - path: outputs/countTable-1-input.tsv
+- name: htseq count 2 inputs
+  command: cwltool --singularity COPYDIR/tools/htseq-count_v0_12_4.cwl tests/jobs/htseq-count-2-inputs-job.yml
+  files:
+  - path: outputs/countTable-2-inputs.tsv

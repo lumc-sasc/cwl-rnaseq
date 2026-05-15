@@ -1,0 +1,28 @@
+- name: starGenomeGenerate with gtf
+  command: cwltool --singularity COPYDIR/tools/starGenomeGenerate_v2_7_5a.cwl tests/jobs/starGenomeGenerate-with-gtf-job.yml
+  files:
+    - path: outputs/STAR_index_with_gtf/chrLength.txt
+    - path: outputs/STAR_index_with_gtf/chrName.txt
+    - path: outputs/STAR_index_with_gtf/chrNameLength.txt
+    - path: outputs/STAR_index_with_gtf/chrStart.txt
+    - path: outputs/STAR_index_with_gtf/exonGeTrInfo.tab
+    - path: outputs/STAR_index_with_gtf/exonInfo.tab
+    - path: outputs/STAR_index_with_gtf/geneInfo.tab
+    - path: outputs/STAR_index_with_gtf/Genome
+    - path: outputs/STAR_index_with_gtf/genomeParameters.txt
+    - path: outputs/STAR_index_with_gtf/SA
+    - path: outputs/STAR_index_with_gtf/SAindex
+    - path: outputs/STAR_index_with_gtf/sjdbInfo.txt
+    - path: outputs/STAR_index_with_gtf/sjdbList.fromGTF.out.tab
+    - path: outputs/STAR_index_with_gtf/sjdbList.out.tab
+    - path: outputs/STAR_index_with_gtf/transcriptInfo.tab
+- name: starGenomeGenerate no gtf
+  command: cwltool --singularity COPYDIR/tools/starGenomeGenerate_v2_7_5a.cwl tests/jobs/starGenomeGenerate-no-gtf-job.yml
+  files:
+    - path: outputs/STAR_index_no_gtf/chrLength.txt
+    - path: outputs/STAR_index_no_gtf/chrName.txt
+    - path: outputs/STAR_index_no_gtf/chrNameLength.txt
+    - path: outputs/STAR_index_no_gtf/chrStart.txt
+    - path: outputs/STAR_index_no_gtf/Genome
+    - path: outputs/STAR_index_no_gtf/SA
+    - path: outputs/STAR_index_no_gtf/SAindex

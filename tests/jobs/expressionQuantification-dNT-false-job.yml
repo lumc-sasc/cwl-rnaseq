@@ -1,0 +1,10 @@
+bamFiles:
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/123456-789-01.dedup.markdup.bam
+referenceGtf:
+  class: File
+  location: ../data/reference/reference.gtf
+strandedness: "RF"
+detectNovelTranscripts: false
+outputDir: "outputs"
+

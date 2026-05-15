@@ -1,0 +1,52 @@
+cwlVersion: v1.2
+class: CommandLineTool
+baseCommand: ["/bin/bash", "-c"]
+label: "Predex Design"
+doc: "A CWL Command Line Tool to convert a countTable into a design matrix."
+
+inputs:
+    countTable:
+        type: File
+        doc: "The created count table from HTseq."
+    outputDir:
+        type: string
+        default: "."
+        doc: "The directory to write the output to."
+    memory:
+        type: string
+        default: "5G"
+        doc: "The amount of memory this job will use."
+    timeMinutes:
+        type: int
+        default: 30
+        doc: "The maximum amount of time the job will run in minutes."
+
+outputs:
+    dgeDesign:
+        type: File
+        outputBinding:
+            glob: $(inputs.outputDir + '/design_matrix.tsv')
+        doc: "Design matrix template to add sample information for DGE analysis."
+    outputDir:
+        type: Directory?
+        outputBinding:
+            glob: "$(inputs.outputDir === '.' ? null : inputs.outputDir.split('/')[0])"
+        doc: "The output directory."
+    
+requirements:
+    DockerRequirement:
+        dockerImageId: "REPLACEPATH/predex_0.9.2--pyh3252c3a_0.sif"
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: $(inputs.memory.replace(/G$/,"")*1024)
+    ToolTimeLimit:
+        class: ToolTimeLimit
+        timelimit: $(inputs.timeMinutes * 60)
+
+arguments:
+      - |
+        set -e
+        mkdir -p $(inputs.outputDir)
+        predex design \
+        --input $(inputs.countTable.path) \
+        --output $(inputs.outputDir)

@@ -1,0 +1,12 @@
+reports:
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/R1_umi_fastqc.zip
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/cutadapt_R1_umi_fastqc.zip
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/R2_umi_fastqc.zip
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/cutadapt_R2_umi_fastqc.zip
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/123456-789-01.markdup.metrics
+outputDir: "outputs"

@@ -1,0 +1,8 @@
+inputBam:
+  class: File
+  location: ../data/01_CWL/samples/123456-789-01/123456-789-01.markdup.bam
+  secondaryFiles:
+    - class: File
+      location: ../data/01_CWL/samples/123456-789-01/123456-789-01.markdup.bai
+outputBam: "umi-dedup.bam"
+outputDir: "outputs"

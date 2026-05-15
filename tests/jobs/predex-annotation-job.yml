@@ -1,0 +1,10 @@
+referenceFasta:
+  class: File
+  location: ../data/reference/reference.fasta
+referenceGtfFile:
+  class: File
+  location: ../data/reference/reference_fixed.gtf
+referenceFastaFai:
+  class: File
+  location: ../data/reference/reference.fasta.fai
+outputDir: "outputs"

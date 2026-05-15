@@ -1,0 +1,4 @@
+- name: predex annotation
+  command: cwltool --singularity COPYDIR/tools/predex-annotation_v0_9_2.cwl tests/jobs/predex-annotation-job.yml
+  files:
+  - path: outputs/annotation.tsv

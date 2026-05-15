@@ -1,0 +1,4 @@
+- name: multiQC test
+  command: cwltool --singularity COPYDIR/tools/multiqc_v1_9.cwl tests/jobs/multiqc-job.yml
+  files:
+    - path: outputs/multiqc_report.html

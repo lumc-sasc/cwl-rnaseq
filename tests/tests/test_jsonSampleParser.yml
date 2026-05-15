@@ -1,0 +1,11 @@
+- name: jsonSampleParser
+  command: cwltool --singularity COPYDIR/tools/json_sample_parser.cwl tests/jobs/jsonSampleParser-job.yml
+  stdout:
+    contains:
+      - '"id": "123456-789-01"'
+      - '"id": "rg"'
+      - '"lib_id": "lb"'
+      - 'R1_umi.fq.gz'
+      - 'R2_umi.fq.gz'
+    must_not_contain:
+      - '"R2": null'

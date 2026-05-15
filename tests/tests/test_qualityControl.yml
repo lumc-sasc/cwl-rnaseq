@@ -1,0 +1,30 @@
+- name: qualityControl 1 input no cuts
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/qualityControl.cwl tests/jobs/qualityControl-nocut-1-input-job.yml
+  files:
+  - path: outputs/R1_fastqc.html
+  - path: outputs/R1_fastqc.zip
+- name: qualityControl 2 inputs no cuts
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/qualityControl.cwl tests/jobs/qualityControl-nocut-2-inputs-job.yml
+  files:
+  - path: outputs/R1_fastqc.html
+  - path: outputs/R1_fastqc.zip
+  - path: outputs/R2_fastqc.html
+  - path: outputs/R2_fastqc.zip
+- name: qualityControl 1 input cutadapt
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/qualityControl.cwl tests/jobs/qualityControl-cut-1-input-job.yml
+  files:
+  - path: outputs/R1_fastqc.html
+  - path: outputs/R1_fastqc.zip
+  - path: outputs/cutadapt_R1_fastqc.html
+  - path: outputs/cutadapt_R1_fastqc.zip
+- name: qualityControl 2 inputs cutadapt
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/qualityControl.cwl tests/jobs/qualityControl-cut-2-inputs-job.yml
+  files:
+  - path: outputs/R1_fastqc.html
+  - path: outputs/R1_fastqc.zip
+  - path: outputs/R2_fastqc.html
+  - path: outputs/R2_fastqc.zip
+  - path: outputs/cutadapt_R1_fastqc.html
+  - path: outputs/cutadapt_R1_fastqc.zip
+  - path: outputs/cutadapt_R2_fastqc.html
+  - path: outputs/cutadapt_R2_fastqc.zip

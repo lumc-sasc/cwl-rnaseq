@@ -1,0 +1,10 @@
+- name: star 1 input
+  command: cwltool --singularity COPYDIR/tools/star_v2_7_5a.cwl tests/jobs/star-1-input-job.yml
+  files:
+  - path: outputs/star_1_input_test_Aligned.sortedByCoord.out.bam
+  - path: outputs/star_1_input_test_Log.final.out  
+- name: star 2 inputs
+  command: cwltool --singularity COPYDIR/tools/star_v2_7_5a.cwl tests/jobs/star-2-inputs-job.yml
+  files:
+  - path: outputs/star_2_inputs_test_Aligned.sortedByCoord.out.bam
+  - path: outputs/star_2_inputs_test_Log.final.out

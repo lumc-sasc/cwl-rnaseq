@@ -1,0 +1,9 @@
+outputDir: "outputs"
+genomeDir: "STAR_index_with_gtf"
+referenceFasta:
+  class: File
+  location: ../data/reference/reference.fasta
+referenceGtf:
+  class: File
+  location: ../data/reference/reference.gtf
+  

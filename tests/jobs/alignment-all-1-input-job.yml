@@ -1,0 +1,52 @@
+read1:
+  class: File
+  location: ../data/rna3/R1_umi.fq.gz
+starIndex:
+  class: Directory
+  location: ../data/reference/star
+hisat2Index:
+  class: Directory
+  location: ../data/reference/hisat2
+outputDir: "outputs"
+indexFiles:
+  - class: File
+    location: ../data/reference/star/Genome
+  - class: File
+    location: ../data/reference/star/SA
+  - class: File
+    location: ../data/reference/star/SAindex
+  - class: File
+    location: ../data/reference/star/chrLength.txt
+  - class: File
+    location: ../data/reference/star/chrName.txt
+  - class: File
+    location: ../data/reference/star/chrNameLength.txt
+  - class: File
+    location: ../data/reference/star/chrStart.txt
+  - class: File
+    location: ../data/reference/star/exonGeTrInfo.tab
+  - class: File
+    location: ../data/reference/star/exonInfo.tab
+  - class: File
+    location: ../data/reference/star/geneInfo.tab
+  - class: File
+    location: ../data/reference/star/genomeParameters.txt
+  - class: File
+    location: ../data/reference/star/sjdbInfo.txt
+  - class: File
+    location: ../data/reference/star/sjdbList.fromGTF.out.tab
+  - class: File
+    location: ../data/reference/star/sjdbList.out.tab
+  - class: File
+    location: ../data/reference/star/transcriptInfo.tab
+sample:
+  id: "123456-789-01"
+  readgroups:
+    - id: "rg"
+      R1:
+        class: File
+        location: ../data/rna3/R1_umi.fq.gz
+      R1_md5: null
+      R2: null
+      R2_md5: null
+      lib_id: "lb"

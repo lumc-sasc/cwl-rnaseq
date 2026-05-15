@@ -1,0 +1,23 @@
+WDLaBam:
+  - class: File
+    location: ../../01_BioWDL/samples/123456-789-01/lib_lib--rg_rg/123456-789-01-lib-rg.star.Aligned.sortedByCoord.out.bam
+CWLaBam:
+  - class: File
+    location: ../../0X_CWL/samples/123456-789-01/lib_lib--rg_rg/123456-789-01-lib-rg.star.Aligned.sortedByCoord.out.bam
+WDLmdBam:
+  - class: File
+    location: ../../01_BioWDL/samples/123456-789-01//123456-789-01.markdup.bam
+CWLmdBam:
+  - class: File
+    location: ../../0X_CWL/samples/123456-789-01//123456-789-01.markdup.bam
+WDLudmdBam:
+  - class: File
+    location: ../../01_BioWDL/samples/123456-789-01//123456-789-01.dedup.markdup.bam
+CWLudmdBam:
+  - class: File
+    location: ../../0X_CWL/samples/123456-789-01//123456-789-01.dedup.markdup.bam
+strandedness: "RF"
+outputDir: "tmp"
+referenceGtf:
+  class: File
+  location: ../tests/data/reference/reference_fixed.gtf

@@ -1,0 +1,19 @@
+- name: indexToFiles
+  command: cwltool --singularity COPYDIR/tools/indexToFiles.cwl tests/jobs/indexToFiles-job.yml
+  stdout:
+    contains:
+      - "Genome"
+      - "SA"
+      - "SAindex"
+      - "chrLength.txt"
+      - "chrName.txt"
+      - "chrNameLength.txt"
+      - "chrStart.txt"
+      - "exonGeTrInfo.tab"
+      - "exonInfo.tab"
+      - "geneInfo.tab"
+      - "genomeParameters.txt"
+      - "sjdbInfo.txt"
+      - "sjdbList.fromGTF.out.tab"
+      - "sjdbList.out.tab"
+      - "transcriptInfo.tab"

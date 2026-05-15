@@ -1,0 +1,22 @@
+sampleConfigFile:
+  class: File
+  path: ../data/samplesheet.csv
+referenceFasta:
+  class: File
+  path: ../data/reference/reference.fasta
+referenceFastaFai:
+  class: File
+  path: ../data/reference/reference.fasta.fai
+strandedness: "RF"
+referenceGtfFile:
+  class: File
+  path: ../data/reference/reference_fixed.gtf
+umiDeduplication: true
+detectNovelTranscripts: false
+adapterForward: "AGATCGGAAGAG"
+adapterReverse: "AGATCGGAAGAG"
+outputDir: "0X_CWL"
+dgeFiles: true
+readLocation:
+  class: Directory
+  path: ../data/rna3/

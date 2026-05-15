@@ -1,0 +1,4 @@
+outputDir: "outputs"
+read1:
+  class: File
+  location: ../data/rna3/R1.fq.gz

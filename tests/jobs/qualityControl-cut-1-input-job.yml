@@ -1,0 +1,7 @@
+read1:
+  class: File
+  location: ../data/rna3/R1.fq.gz
+readGroupName: "qctest_nocut_1input"
+outputDir: "outputs"
+adapterForward: ["AGATCGGAAGAGC"]
+adapterReverse: ["AGATCGGAAGAGC"]

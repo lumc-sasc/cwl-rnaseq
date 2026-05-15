@@ -1,0 +1,11 @@
+- name: cutadapt 2 inputs
+  command: cwltool --singularity COPYDIR/tools/cutadapt_v2_10.cwl tests/jobs/cutadapt-2-inputs-job.yml
+  files:
+  - path: outputs/cut_r1.fq.gz
+  - path: outputs/cut_r2.fq.gz
+  - path: outputs/cutadapt_report.txt
+- name: cutadapt 1 input
+  command: cwltool --singularity COPYDIR/tools/cutadapt_v2_10.cwl tests/jobs/cutadapt-1-input-job.yml
+  files:
+  - path: outputs/cut_r1.fq.gz
+  - path: outputs/cutadapt_report.txt

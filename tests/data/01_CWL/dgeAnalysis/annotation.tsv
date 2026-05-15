@@ -1,0 +1,7 @@
+feature	geneName	chromosome	startPos	endPos	geneStrand	geneLength	exonLength	geneGC	exonGC	intronGC	geneType
+g_1	g_1	chr1	2000	5000	+	3001	1500	0.434	0.427333	0.440667	unknown
+g_2	g_2	chr1	7000	10000	-	3001	1250	0.381333	0.3736	0.386857	unknown
+g_3	g_3	chr1	9500	12500	+	3001	1500	0.394333	0.402667	0.386	unknown
+g_4	g_4	chrM	2000	5000	-	3001	1500	0.398333	0.43	0.366667	unknown
+g_5	g_5	chrM	7000	10000	+	3001	1250	0.432667	0.4208	0.441143	unknown
+g_6	g_6	chrM	9500	12500	-	3001	1500	0.426333	0.438	0.414667	unknown

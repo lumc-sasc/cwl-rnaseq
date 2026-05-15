@@ -1,0 +1,60 @@
+This is cutadapt 2.10 with Python 3.7.6
+Command line parameters: --cores 4 -a AGATCGGAAGAG -A AGATCGGAAGAG --output 01_CWL/samples/123456-789-01/lib_lb--rg_rg/cutadapt_R1_umi.fq.gz -p 01_CWL/samples/123456-789-01/lib_lb--rg_rg/cutadapt_R2_umi.fq.gz --compression-level 1 --minimum-length 2 /var/lib/cwl/stg96355637-bddf-430e-96cf-77bbb4d7745e/R1_umi.fq.gz /var/lib/cwl/stg036d9a0b-a4db-4530-9976-3bbe6d0c3028/R2_umi.fq.gz
+Processing reads on 4 cores in paired-end mode ...
+Finished in 0.26 s (26 us/read; 2.29 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             10,002
+  Read 1 with adapter:                     273 (2.7%)
+  Read 2 with adapter:                     299 (3.0%)
+Pairs written (passing filters):        10,002 (100.0%)
+
+Total basepairs processed:     1,960,392 bp
+  Read 1:       960,192 bp
+  Read 2:     1,000,200 bp
+Total written (filtered):      1,958,484 bp (99.9%)
+  Read 1:       959,301 bp
+  Read 2:       999,183 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: AGATCGGAAGAG; Type: regular 3'; Length: 12; Trimmed: 273 times
+
+No. of allowed errors:
+0-9 bp: 0; 10-12 bp: 1
+
+Bases preceding removed adapters:
+  A: 31.1%
+  C: 24.2%
+  G: 25.3%
+  T: 19.4%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	208	156.3	0	208
+4	58	39.1	0	58
+5	7	9.8	0	7
+
+
+=== Second read: Adapter 2 ===
+
+Sequence: AGATCGGAAGAG; Type: regular 3'; Length: 12; Trimmed: 299 times
+
+No. of allowed errors:
+0-9 bp: 0; 10-12 bp: 1
+
+Bases preceding removed adapters:
+  A: 28.1%
+  C: 25.8%
+  G: 25.4%
+  T: 20.7%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	232	156.3	0	232
+4	57	39.1	0	57
+5	9	9.8	0	9
+48	1	0.0	1	0 1

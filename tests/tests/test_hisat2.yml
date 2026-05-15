@@ -1,0 +1,11 @@
+- name: hisat2 2 inputs
+  command: cwltool --singularity COPYDIR/tools/hisat2_v_44da2652.cwl tests/jobs/hisat2-2-inputs-job.yml
+  files:
+    - path: outputs/hisat2-2reads.bam
+    - path: outputs/hisat2-2reads.summary.txt
+
+- name: hisat2 1 input
+  command: cwltool --singularity COPYDIR/tools/hisat2_v_44da2652.cwl tests/jobs/hisat2-1-input-job.yml
+  files:
+    - path: outputs/hisat2-1read.bam
+    - path: outputs/hisat2-1read.summary.txt

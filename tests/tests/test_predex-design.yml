@@ -1,0 +1,4 @@
+- name: predex design
+  command: cwltool --singularity COPYDIR/tools/predex-design_v0_9_2.cwl tests/jobs/predex-design-job.yml
+  files:
+  - path: outputs/design_matrix.tsv

@@ -1,0 +1,8 @@
+- name: collect-columns minimal with gtf
+  command: cwltool --singularity COPYDIR/tools/collect-columns_v1_0_0.cwl tests/jobs/collect-columns-minimal-with-gtf-job.yml
+  files:
+  - path: outputs/combined-counts-minimal-with-gtf.tsv
+- name: collect-columns minimal no gtf
+  command: cwltool --singularity COPYDIR/tools/collect-columns_v1_0_0.cwl tests/jobs/collect-columns-minimal-no-gtf-job.yml
+  files:
+  - path: outputs/combined-counts-minimal-no-gtf.tsv

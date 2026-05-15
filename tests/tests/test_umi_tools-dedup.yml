@@ -1,0 +1,5 @@
+- name: umi_tools dedup
+  command: cwltool --singularity COPYDIR/tools/umi_tools-dedup_v1_1_1.cwl tests/jobs/umi_tools-dedup-job.yml
+  files:
+  - path: outputs/umi-dedup.bam
+  - path: outputs/umi-dedup.bai
