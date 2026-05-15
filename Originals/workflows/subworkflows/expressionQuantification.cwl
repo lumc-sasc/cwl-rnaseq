@@ -40,6 +40,8 @@ outputs:
 
 requirements:
     InlineJavascriptRequirement: {}
+    ScatterFeatureRequirement: {}
+    StepInputExpressionRequirement: {}
 
 steps:
     HTSeqCount:

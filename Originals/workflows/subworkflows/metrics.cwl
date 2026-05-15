@@ -82,6 +82,8 @@ outputs:
 
 requirements:
     InlineJavascriptRequirement: {}
+    MultipleInputFeatureRequirement: {}
+    StepInputExpressionRequirement: {}
 
 steps:
     markDuplicates1:

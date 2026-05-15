@@ -168,6 +168,12 @@ outputs:
         outputSource: metrics/positionStats
         doc: "The counts for unique combinations of UMI and position."
 
+requirements:
+    InlineJavascriptRequirement: {}
+    SubworkflowFeatureRequirement: {}
+    StepInputExpressionRequirement : {}
+    MultipleInputFeatureRequirement: {}
+
 steps:
     qualityControl:
         in:
