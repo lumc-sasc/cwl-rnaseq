@@ -1,0 +1,10 @@
+inputBams:
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+  - class: File
+    location: ../data/01_CWL/samples/123456-789-01/123456-789-01.dedup.markdup.bam
+gtfFile:
+    class: File
+    location: ../data/reference/reference.gtf
+outputDir: "outputs"
+outputTable: "countTable-2-inputs.tsv"

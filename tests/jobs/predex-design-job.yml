@@ -1,0 +1,4 @@
+countTable:
+  class: File
+  location: ../data/01_CWL/expression_measures/fragments_per_gene/all_samples.fragments_per_gene
+outputDir: "outputs"

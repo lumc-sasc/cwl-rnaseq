@@ -1,0 +1,6 @@
+sequence:
+    class: File
+    location: ../data/rna3/R1.fq.gz
+outputDir: "outputs"
+threads: 1
+extract: true

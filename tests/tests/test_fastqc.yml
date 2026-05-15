@@ -1,0 +1,6 @@
+- name: FastQC basic
+  command: cwltool --singularity COPYDIR/tools/fastqc_v0_11_9.cwl tests/jobs/fastqc-job.yml
+  files:
+  - path: outputs/R1_fastqc.html
+  - path: outputs/R1_fastqc.zip
+  - path: outputs/R1_fastqc/summary.txt

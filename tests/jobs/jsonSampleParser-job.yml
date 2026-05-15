@@ -1,0 +1,6 @@
+jsonFile:
+  class: File
+  location: ../data/01_CWL/samples.json
+readLocation:
+  class: Directory
+  location: ../data/rna3

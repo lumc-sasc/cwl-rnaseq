@@ -1,0 +1,4 @@
+samplesheet:
+    class: File
+    location: ../data/samplesheet.csv
+outputDir: "outputs"

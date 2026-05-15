@@ -1,0 +1,38 @@
+- name: alignment 2 inputs
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-all-2-inputs-job.yml
+  files:
+  - path: outputs/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+  - path: outputs/123456-789-01-lb-rg.star.Log.final.out
+  - path: outputs/hisat2.bam
+    should_exist: false
+  - path: outputs/hisat2.summary.txt
+    should_exist: false
+- name: alignment 1 input
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-all-1-input-job.yml
+  files:
+  - path: outputs/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+  - path: outputs/123456-789-01-lb-rg.star.Log.final.out
+  - path: outputs/hisat2.bam
+    should_exist: false
+  - path: outputs/hisat2.summary.txt
+    should_exist: false
+- name: alignment star 2 inputs
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-star-2-inputs-job.yml
+  files:
+  - path: outputs/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+  - path: outputs/123456-789-01-lb-rg.star.Log.final.out
+- name: alignment star 1 input
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-star-1-input-job.yml
+  files:
+  - path: outputs/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+  - path: outputs/123456-789-01-lb-rg.star.Log.final.out
+- name: alignment hisat2 2 inputs
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-hisat2-2-inputs-job.yml
+  files:
+  - path: outputs/hisat2.bam
+  - path: outputs/hisat2.summary.txt
+- name: alignment hisat2 1 input
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/alignment.cwl tests/jobs/alignment-hisat2-1-input-job.yml
+  files:
+  - path: outputs/hisat2.bam
+  - path: outputs/hisat2.summary.txt

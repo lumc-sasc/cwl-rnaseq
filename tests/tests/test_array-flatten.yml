@@ -1,0 +1,7 @@
+- name: Array Flatten
+  command: cwltool --singularity COPYDIR/tools/array_flatten.cwl tests/jobs/array_flatten-job.yml
+  stdout:
+    contains:
+      - "list1"
+      - "list2"
+      - "list3"

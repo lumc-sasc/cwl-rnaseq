@@ -1,0 +1,5 @@
+- name: Expression Quantification detectNovelTranscripts false
+  command: cwltool --singularity COPYDIR/workflows/subworkflows/expressionQuantification.cwl tests/jobs/expressionQuantification-dNT-false-job.yml
+  files:
+    - path: outputs/fragments_per_gene/123456-789-01.fragments_per_gene
+    - path: outputs/fragments_per_gene/all_samples.fragments_per_gene

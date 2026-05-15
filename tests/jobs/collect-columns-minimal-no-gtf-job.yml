@@ -1,0 +1,8 @@
+inputTables:
+  - class: File
+    location: ../data/01_CWL/expression_measures/fragments_per_gene/123456-789-01.fragments_per_gene
+  - class: File
+    location: ../data/01_CWL/expression_measures/fragments_per_gene/123456-789-01.fragments_per_gene
+outputFile: combined-counts-minimal-no-gtf.tsv
+outputDir: outputs
+featureAttribute: "gene_id"

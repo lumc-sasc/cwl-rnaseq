@@ -1,0 +1,6 @@
+- name: picard markduplicates
+  command: cwltool --singularity COPYDIR/tools/picard-markduplicates_v2_23_2.cwl tests/jobs/picard-markduplicates-job.yml
+  files:
+  - path: outputs/picard-markduplicates.bam
+  - path: outputs/picard-markduplicates.bai
+  - path: outputs/picard-markduplicates.metrics

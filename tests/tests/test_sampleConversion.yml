@@ -1,0 +1,4 @@
+- name: sampleConversion
+  command: cwltool --singularity COPYDIR/tools/sampleConversion_v0_2_1.cwl tests/jobs/sampleConversion-job.yml
+  files:
+  - path: outputs/samples.json

@@ -1,0 +1,32 @@
+outputDir: "outputs"
+inputR1:
+  class: File
+  location: ../data/rna3/R1_umi.fq.gz
+inputR2:
+  class: File
+  location: ../data/rna3/R2_umi.fq.gz
+indexDir:
+  class: Directory
+  location: ../data/reference/hisat2
+outputBam: "hisat2-2reads.bam"
+summaryFilePath: "hisat2-2reads.summary.txt"
+sample: "123456-789-01"
+library: "lb"
+readgroup: "rg"
+indexFiles:
+  - class: File
+    location: ../data/reference/hisat2/reference.1.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.2.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.3.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.4.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.5.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.6.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.7.ht2
+  - class: File
+    location: ../data/reference/hisat2/reference.8.ht2

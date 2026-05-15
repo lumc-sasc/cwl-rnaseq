@@ -1,0 +1,8 @@
+inputBams:
+- class: File
+  location: ../data/01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.Aligned.sortedByCoord.out.bam
+- class: File
+  location: ../data/01_CWL/samples/123456-789-01/123456-789-01.dedup.bam
+outputBam: "picard-markduplicates.bam" 
+metrics: "picard-markduplicates.metrics"
+outputDir: "outputs"
