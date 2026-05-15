@@ -1,0 +1,210 @@
+STAR version=2.7.5a
+STAR compilation time,server,dir=Tue Jun 16 12:17:16 EDT 2020 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+##### Command Line:
+STAR --readFilesIn /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz --outFileNamePrefix 01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star. --genomeDir /var/lib/cwl/stg69444bb7-98cb-4c3c-acc1-d327a3c3baa0/STAR_index --outSAMtype BAM SortedByCoordinate --outBAMcompression 1 --readFilesCommand zcat --outSAMunmapped Within KeepPairs --runThreadN 4 --twopassMode Basic
+##### Initial USER parameters from Command Line:
+outFileNamePrefix                 01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.
+###### All USER parameters from Command Line:
+readFilesIn                   /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz   /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz        ~RE-DEFINED
+outFileNamePrefix             01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.     ~RE-DEFINED
+genomeDir                     /var/lib/cwl/stg69444bb7-98cb-4c3c-acc1-d327a3c3baa0/STAR_index     ~RE-DEFINED
+outSAMtype                    BAM   SortedByCoordinate        ~RE-DEFINED
+outBAMcompression             1     ~RE-DEFINED
+readFilesCommand              zcat        ~RE-DEFINED
+outSAMunmapped                Within   KeepPairs        ~RE-DEFINED
+runThreadN                    4     ~RE-DEFINED
+twopassMode                   Basic     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runThreadN                        4
+genomeDir                         /var/lib/cwl/stg69444bb7-98cb-4c3c-acc1-d327a3c3baa0/STAR_index
+readFilesIn                       /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz   /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz   
+readFilesCommand                  zcat   
+outFileNamePrefix                 01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.
+outSAMtype                        BAM   SortedByCoordinate   
+outSAMunmapped                    Within   KeepPairs   
+outBAMcompression                 1
+twopassMode                       Basic
+
+-------------------------------
+##### Final effective command line:
+STAR   --runThreadN 4   --genomeDir /var/lib/cwl/stg69444bb7-98cb-4c3c-acc1-d327a3c3baa0/STAR_index   --readFilesIn /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz   /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz      --readFilesCommand zcat      --outFileNamePrefix 01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star.   --outSAMtype BAM   SortedByCoordinate      --outSAMunmapped Within   KeepPairs      --outBAMcompression 1   --twopassMode Basic
+----------------------------------------
+
+Number of fastq files for each mate = 1
+
+   Input read files for mate 1 :
+-rw-r--r--    1 fangenen SHARK-SA    486798 May 11 14:50 /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz
+
+   readsCommandsFile:
+exec > "01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star._STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "/var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz"
+
+
+   Input read files for mate 2 :
+-rw-r--r--    1 fangenen SHARK-SA    498617 May 11 14:50 /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz
+
+   readsCommandsFile:
+exec > "01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star._STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "/var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz"
+
+WARNING: --limitBAMsortRAM=0, will use genome size as RAM limit for BAM sorting
+Finished loading and checking parameters
+Reading genome generation parameters:
+### STAR   --runMode genomeGenerate   --runThreadN 4   --genomeDir 01_CWL/STAR_index   --genomeFastaFiles /var/lib/cwl/stg93b37249-6968-464e-b361-19bb57ddb297/reference.fasta      --sjdbGTFfile /var/lib/cwl/stgb13674bb-9985-4b30-b1df-263fbdc26b1f/reference.gtf
+### GstrandBit=32
+versionGenome                 2.7.4a     ~RE-DEFINED
+genomeType                    Full     ~RE-DEFINED
+genomeFastaFiles              /var/lib/cwl/stg93b37249-6968-464e-b361-19bb57ddb297/reference.fasta        ~RE-DEFINED
+genomeSAindexNbases           14     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+genomeSAsparseD               1     ~RE-DEFINED
+genomeTransformType           None     ~RE-DEFINED
+genomeTransformVCF            -     ~RE-DEFINED
+sjdbOverhang                  100     ~RE-DEFINED
+sjdbFileChrStartEnd           -        ~RE-DEFINED
+sjdbGTFfile                   /var/lib/cwl/stgb13674bb-9985-4b30-b1df-263fbdc26b1f/reference.gtf     ~RE-DEFINED
+sjdbGTFchrPrefix              -     ~RE-DEFINED
+sjdbGTFfeatureExon            exon     ~RE-DEFINED
+sjdbGTFtagExonParentTranscripttranscript_id     ~RE-DEFINED
+sjdbGTFtagExonParentGene      gene_id     ~RE-DEFINED
+sjdbInsertSave                Basic     ~RE-DEFINED
+genomeFileSizes               527504   291987        ~RE-DEFINED
+Genome version is compatible with current STAR
+Number of real (reference) chromosomes= 2
+1	chr1	15624	0
+2	chrM	16569	262144
+--sjdbOverhang = 100 taken from the generated genome
+Started loading the genome: Mon May 11 14:52:09 2026
+
+Genome: size given as a parameter = 527504
+SA: size given as a parameter = 291987
+SAindex: size given as a parameter = 1
+Read from SAindex: pGe.gSAindexNbases=14  nSAi=357913940
+nGenome=527504;  nSAbyte=291987
+GstrandBit=32   SA number of indices=70784
+Shared memory is not used for genomes. Allocated a private copy of the genome.
+Genome file size: 527504 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 527504 bytes
+SA file size: 291987 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 291987 bytes
+Loading SAindex ... done: 1565873619 bytes
+Finished loading the genome: Mon May 11 14:52:12 2026
+
+Processing splice junctions database sjdbN=16,   pGe.sjdbOverhang=100 
+alignIntronMax=alignMatesGapMax=0, the max intron size will be approximately determined by (2^winBinNbits)*winAnchorDistNbins=589824
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Starting to map file # 0
+mate 1:   /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz
+mate 2:   /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz
+Thread #1 end of input stream, nextChar=-1
+Completed: thread #0
+Completed: thread #3
+Completed: thread #2
+Completed: thread #1
+Joined thread # 1
+Joined thread # 2
+Joined thread # 3
+May 11 14:52:14   Loaded database junctions from the generated genome /var/lib/cwl/stg69444bb7-98cb-4c3c-acc1-d327a3c3baa0/STAR_index//sjdbList.out.tab: 16 total junctions
+
+May 11 14:52:14   Loaded database junctions from the 1st pass file: 01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star._STARpass1//SJ.out.tab: 47 total junctions
+
+May 11 14:52:14   Finished preparing junctions
+May 11 14:52:14 ..... inserting junctions into the genome indices
+May 11 14:52:14   Finished SA search: number of new junctions=15, old junctions=16
+May 11 14:52:14   Finished sorting SA indicesL nInd=6000
+Genome size with junctions=530519  524288   6231
+GstrandBit1=32   GstrandBit=32
+May 11 14:52:14   Finished inserting junction indices
+May 11 14:52:22   Finished SAi
+May 11 14:52:22 ..... finished inserting junctions into genome
+
+   Input read files for mate 1 :
+-rw-r--r--    1 fangenen SHARK-SA    486798 May 11 14:50 /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz
+
+   readsCommandsFile:
+exec > "01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star._STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "/var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz"
+
+
+   Input read files for mate 2 :
+-rw-r--r--    1 fangenen SHARK-SA    498617 May 11 14:50 /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz
+
+   readsCommandsFile:
+exec > "01_CWL/samples/123456-789-01/lib_lb--rg_rg/123456-789-01-lb-rg.star._STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "/var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz"
+
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Starting to map file # 0
+mate 1:   /var/lib/cwl/stg55133988-dc35-4126-bf57-71b34c660371/cutadapt_R1_umi.fq.gz
+mate 2:   /var/lib/cwl/stg8125638d-9961-4cd6-8b2f-485feb4d094f/cutadapt_R2_umi.fq.gz
+Thread #1 end of input stream, nextChar=-1
+Completed: thread #2
+Completed: thread #0
+Completed: thread #3
+BAM sorting: 20190 mapped reads
+BAM sorting bins genomic start loci:
+1	0	2124
+2	0	2247
+3	0	2367
+4	0	2444
+5	0	3027
+6	0	3162
+7	0	3550
+8	0	3681
+9	0	4548
+10	0	4667
+11	0	4803
+12	0	7088
+13	0	7343
+14	0	8499
+15	0	8637
+16	0	9512
+17	0	9645
+18	0	9788
+19	0	9921
+20	0	11075
+21	0	11214
+22	0	11357
+23	0	12004
+24	0	12269
+25	1	2068
+26	1	2199
+27	1	2330
+28	1	2427
+29	1	2999
+30	1	3130
+31	1	3513
+32	1	3644
+33	1	4517
+34	1	4629
+35	1	4760
+36	1	4878
+37	1	7222
+38	1	7438
+39	1	8568
+40	1	8703
+41	1	9580
+42	1	9713
+43	1	9840
+44	1	9983
+45	1	11130
+46	1	11271
+47	1	11418
+48	1	12115
+Completed: thread #1
+Joined thread # 1
+Joined thread # 2
+Joined thread # 3
+May 11 14:52:26 ..... started sorting BAM
+Max memory needed for sorting = 114020
+ALL DONE!
